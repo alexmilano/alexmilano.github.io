@@ -27,13 +27,14 @@
     --mono: 'IBM Plex Mono', monospace;
     --serif: 'Fraunces', serif;
   }
-  html { scroll-behavior: smooth; }
-  body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'IBM Plex Sans', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  html { scroll-behavior: smooth; overflow-x: clip; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'IBM Plex Sans', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: clip; }
   a { color: var(--amber); text-decoration: none; }
   a:hover { color: var(--ink); }
   ::selection { background: var(--amber); color: var(--bg); }
   :focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
   button { font-family: var(--mono); cursor: pointer; }
+  a, button { touch-action: manipulation; }
 
   @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
   @keyframes bookFloat { 0%, 100% { transform: rotate(-1.2deg) translateY(0); } 50% { transform: rotate(-1.2deg) translateY(-10px); } }
@@ -48,22 +49,22 @@
   .cursor { display: inline-block; width: 9px; height: 17px; background: var(--amber); vertical-align: text-bottom; margin-left: 2px; animation: blink 1.1s step-end infinite; }
 
   /* NAV */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; gap: 16px;
     padding: 14px 24px; background: rgba(11,12,14,0.82); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);
     font-family: var(--mono); font-size: 13px; }
-  nav .brand { color: var(--ink); font-weight: 500; letter-spacing: 0.04em; }
+  nav a, nav button { touch-action: manipulation; }
+  nav .brand { color: var(--ink); font-weight: 500; letter-spacing: 0.04em; padding: 4px 0; }
   nav .brand:hover { color: var(--ink); }
-  nav .links { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; justify-content: flex-end; }
-  nav .anchors { display: flex; gap: 14px; flex-wrap: wrap; }
-  nav .anchors a { color: var(--muted); }
+  nav .anchors { display: flex; gap: 14px; margin-left: auto; }
+  nav .anchors a { color: var(--muted); padding: 4px 2px; }
   nav .anchors a:hover { color: var(--amber); }
   nav .langs { display: flex; gap: 6px; }
-  nav .langs button { background: none; border: none; font-size: 13px; padding: 2px 4px; color: var(--dim); }
+  nav .langs button { background: none; border: none; font-size: 13px; padding: 4px 6px; color: var(--dim); }
   nav .langs button.active { color: var(--amber); }
 
   /* HERO */
-  #inicio { position: relative; min-height: 100vh; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    align-items: center; gap: 32px; padding: 120px 6vw 64px; box-sizing: border-box; overflow: hidden; }
+  #inicio { position: relative; min-height: 100vh; min-height: 100dvh; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    align-items: start; align-content: center; gap: 32px; padding: 120px 6vw 64px; box-sizing: border-box; overflow: hidden; }
   #particles { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; opacity: 0.35; }
   .hero-copy { max-width: 720px; position: relative; z-index: 2; }
   .terminal { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 20px 22px;
@@ -204,13 +205,21 @@
 
   /* MOBILE: full-bleed hero portrait behind the headline */
   @media (max-width: 720px) {
-    #inicio { grid-template-columns: 1fr; padding: 96px 6vw 56px; }
+    nav { flex-wrap: wrap; row-gap: 2px; padding: 10px 18px; font-size: 12.5px; }
+    nav .langs { order: 1; margin-left: auto; }
+    nav .anchors { order: 2; width: 100%; margin-left: 0; gap: 4px 12px; flex-wrap: wrap; }
+    nav .anchors a, nav .langs button { padding: 8px 4px; }
+    #inicio { grid-template-columns: 1fr; padding: 112px 6vw 56px; }
     .hero-img { position: absolute; inset: 0; height: 100%; min-height: 0; border-radius: 0; border: none; }
     .hero-img .veil { background: linear-gradient(to bottom, rgba(11,12,14,0.72) 0%, rgba(11,12,14,0.55) 40%, rgba(11,12,14,0.92) 100%); }
     .hero-img .cap { display: none; }
+    .btn-solid, .btn-ghost { padding: 14px 20px; }
+    .formats .fmt { padding: 10px 12px; }
+    .formats .other { padding: 10px 4px; }
     .sec-pad { padding: 72px 6vw; }
     #framework, #ia .head-grid { gap: 36px; }
     #libro { padding: 84px 6vw; gap: 36px; }
+    .book-copy h2 { font-size: clamp(30px, 9vw, 40px); }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -226,17 +235,15 @@
   <!-- NAV -->
   <nav>
     <a class="brand" href="#inicio">alex.milano<span style="color:var(--amber)">_</span></a>
-    <div class="links">
-      <div class="anchors">
-        <a href="#trayectoria" data-i18n-bracket="navTrack">[trayectoria]</a>
-        <a href="#ia" data-i18n-bracket="navAI">[ia]</a>
-        <a href="#libro" data-i18n-bracket="navBook">[libro]</a>
-        <a href="#contacto" data-i18n-bracket="navContact">[contacto]</a>
-      </div>
-      <div class="langs" role="group" aria-label="Language">
-        <button id="btn-es" type="button">[es]</button>
-        <button id="btn-en" type="button">[en]</button>
-      </div>
+    <div class="anchors">
+      <a href="#trayectoria" data-i18n-bracket="navTrack">[trayectoria]</a>
+      <a href="#ia" data-i18n-bracket="navAI">[ia]</a>
+      <a href="#libro" data-i18n-bracket="navBook">[libro]</a>
+      <a href="#contacto" data-i18n-bracket="navContact">[contacto]</a>
+    </div>
+    <div class="langs" role="group" aria-label="Language">
+      <button id="btn-es" type="button">[es]</button>
+      <button id="btn-en" type="button">[en]</button>
     </div>
   </nav>
 
