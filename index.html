@@ -7,6 +7,9 @@
 <meta name="description" content="Alexander Milano — CTO, líder en IA y transformación digital, autor de CONSEQUENCES. 20 años tomando decisiones tecnológicas de alto impacto. / CTO, AI leader and author of CONSEQUENCES.">
 <meta property="og:title" content="Alexander Milano — I make hard decisions. And I own the consequences.">
 <meta property="og:description" content="CTO @ MutuaMad Motor Network · AI &amp; Digital Transformation · Author of CONSEQUENCES · Madrid">
+<meta property="og:url" content="https://alexmilano.com/">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230B0C0E'/%3E%3Crect x='3' y='10' width='10' height='3' fill='%23E8A33D'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -477,6 +480,7 @@
 
   var dict = {
     es: {
+      metaDesc: 'Alexander Milano — CTO, líder en IA y transformación digital, autor de CONSEQUENCES. 20 años tomando decisiones tecnológicas de alto impacto.',
       navTrack: 'trayectoria', navAI: 'ia', navBook: 'libro', navContact: 'contacto',
       heroTitle: 'Tomo decisiones difíciles. Y asumo las consecuencias.',
       ctaTrack: 'ver trayectoria', ctaBook: 'el libro',
@@ -538,6 +542,7 @@
       ]
     },
     en: {
+      metaDesc: 'Alexander Milano — CTO, AI and digital transformation leader, author of CONSEQUENCES. 20 years of high-impact technology decisions.',
       navTrack: 'track record', navAI: 'ai', navBook: 'book', navContact: 'contact',
       heroTitle: 'I make hard decisions. And I own the consequences.',
       ctaTrack: 'see track record', ctaBook: 'the book',
@@ -631,6 +636,8 @@
   function applyLang() {
     var d = t();
     document.documentElement.lang = state.lang;
+    var md = document.querySelector('meta[name="description"]');
+    if (md) md.setAttribute('content', d.metaDesc);
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
       el.textContent = d[el.getAttribute('data-i18n')];
     });
