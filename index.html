@@ -183,8 +183,10 @@
   #proyectos .head { margin-bottom: 48px; }
   #proyectos h2 { font-size: clamp(28px, 3.2vw, 42px); }
   .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 960px; }
-  .project { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 30px 28px; transition: transform 0.25s ease, border-color 0.25s ease; }
-  .project:hover { transform: translateY(-2px); border-color: var(--border2); }
+  .project { display: block; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 30px 28px; transition: transform 0.25s ease, border-color 0.25s ease; }
+  .project:hover { transform: translateY(-2px); border-color: var(--amber); }
+  .project .plink { font-family: var(--mono); font-size: 12.5px; color: var(--amber); margin-top: 16px; }
+  .project:hover .plink { text-decoration: underline; text-underline-offset: 3px; }
   .project h3 { font-family: var(--serif); font-weight: 700; font-size: 26px; margin: 0 0 12px; color: var(--ink); }
   .project p { font-size: 15.5px; line-height: 1.65; color: var(--body2); margin: 0 0 18px; }
   .project .metrics { font-family: var(--mono); font-size: 13px; color: var(--amber); line-height: 1.9; }
@@ -391,8 +393,8 @@
         { label: 'teams & transformation', body: 'Equipos que adoptan IA como herramienta diaria de ingeniería.' }
       ],
       projects: [
-        { name: 'GuiaPana', desc: 'Plataforma de descubrimiento de restaurantes venezolanos.', metrics: '+11.000 restaurantes · +26.000 páginas · tráfico desde asistentes de IA' },
-        { name: 'Legaltica', desc: 'Directorio legal de España.', metrics: '+200.000 landing pages programáticas' }
+        { name: 'GuiaPana', desc: 'Plataforma de descubrimiento de restaurantes venezolanos.', metrics: '+11.000 restaurantes · +26.000 páginas · tráfico desde asistentes de IA', url: 'https://guiapana.com', domain: 'guiapana.com' },
+        { name: 'Legaltica', desc: 'Directorio legal de España.', metrics: '+200.000 landing pages programáticas', url: 'https://www.legaltica.com', domain: 'legaltica.com' }
       ],
       entries: [
         { years: '2020 → hoy', role: 'CTO', company: 'Aurgi / MutuaMad Motor Network', org: 'Grupo Mutua Madrileña',
@@ -433,8 +435,8 @@
         { label: 'teams & transformation', body: 'Teams that adopt AI as a daily engineering tool.' }
       ],
       projects: [
-        { name: 'GuiaPana', desc: 'Discovery platform for Venezuelan restaurants.', metrics: '+11,000 restaurants · +26,000 pages · traffic from AI assistants' },
-        { name: 'Legaltica', desc: 'Legal directory for Spain.', metrics: '+200,000 programmatic landing pages' }
+        { name: 'GuiaPana', desc: 'Discovery platform for Venezuelan restaurants.', metrics: '+11,000 restaurants · +26,000 pages · traffic from AI assistants', url: 'https://guiapana.com', domain: 'guiapana.com' },
+        { name: 'Legaltica', desc: 'Legal directory for Spain.', metrics: '+200,000 programmatic landing pages', url: 'https://www.legaltica.com', domain: 'legaltica.com' }
       ],
       entries: [
         { years: '2020 → today', role: 'CTO', company: 'Aurgi / MutuaMad Motor Network', org: 'Mutua Madrileña Group',
@@ -593,11 +595,12 @@
 
   function renderProjects() {
     document.getElementById('projects').innerHTML = t().projects.map(function (pr) {
-      return '<div class="project" data-reveal>' +
+      return '<a class="project" data-reveal href="' + pr.url + '" target="_blank" rel="noopener">' +
         '<h3>' + esc(pr.name) + '</h3>' +
         '<p>' + esc(pr.desc) + '</p>' +
         '<div class="metrics">' + esc(pr.metrics) + '</div>' +
-      '</div>';
+        '<div class="plink">→ ' + esc(pr.domain) + '</div>' +
+      '</a>';
     }).join('');
   }
 
