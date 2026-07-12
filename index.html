@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alexander Milano — CTO · AI &amp; Digital Transformation · Author of CONSEQUENCES</title>
+<meta name="description" content="Alexander Milano — CTO, líder en IA y transformación digital, autor de CONSEQUENCES. 20 años tomando decisiones tecnológicas de alto impacto. / CTO, AI leader and author of CONSEQUENCES.">
+<meta property="og:title" content="Alexander Milano — I make hard decisions. And I own the consequences.">
+<meta property="og:description" content="CTO @ MutuaMad Motor Network · AI &amp; Digital Transformation · Author of CONSEQUENCES · Madrid">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B0C0E;
+    --ink: #F2EDE3;
+    --amber: #E8A33D;
+    --amber-dark: #9A6B1F;
+    --muted: #8A8D93;
+    --dim: #55585F;
+    --body2: #B9BBC0;
+    --line: #24262B;
+    --line2: #2C2F35;
+    --border2: #3A3D44;
+    --card: #111216;
+    --panel: #0E0F12;
+    --mono: 'IBM Plex Mono', monospace;
+    --serif: 'Fraunces', serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'IBM Plex Sans', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { color: var(--amber); text-decoration: none; }
+  a:hover { color: var(--ink); }
+  ::selection { background: var(--amber); color: var(--bg); }
+  :focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+  button { font-family: var(--mono); cursor: pointer; }
+
+  @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+  @keyframes bookFloat { 0%, 100% { transform: rotate(-1.2deg) translateY(0); } 50% { transform: rotate(-1.2deg) translateY(-10px); } }
+  @keyframes glowPulse { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
+  @keyframes dotPulse { 0%, 100% { box-shadow: 0 0 6px rgba(232,163,61,0.35); } 50% { box-shadow: 0 0 16px rgba(232,163,61,0.85); } }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes inkPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+
+  .scanlines { position: fixed; inset: 0; z-index: 60; pointer-events: none; opacity: 0.05;
+    background: repeating-linear-gradient(to bottom, rgba(232,163,61,0.5) 0px, rgba(232,163,61,0.5) 1px, transparent 1px, transparent 4px); }
+
+  .cursor { display: inline-block; width: 9px; height: 17px; background: var(--amber); vertical-align: text-bottom; margin-left: 2px; animation: blink 1.1s step-end infinite; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 14px 24px; background: rgba(11,12,14,0.82); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);
+    font-family: var(--mono); font-size: 13px; }
+  nav .brand { color: var(--ink); font-weight: 500; letter-spacing: 0.04em; }
+  nav .brand:hover { color: var(--ink); }
+  nav .links { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; justify-content: flex-end; }
+  nav .anchors { display: flex; gap: 14px; flex-wrap: wrap; }
+  nav .anchors a { color: var(--muted); }
+  nav .anchors a:hover { color: var(--amber); }
+  nav .langs { display: flex; gap: 6px; }
+  nav .langs button { background: none; border: none; font-size: 13px; padding: 2px 4px; color: var(--dim); }
+  nav .langs button.active { color: var(--amber); }
+
+  /* HERO */
+  #inicio { position: relative; min-height: 100vh; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    align-items: center; gap: 32px; padding: 120px 6vw 64px; box-sizing: border-box; overflow: hidden; }
+  #particles { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; opacity: 0.35; }
+  .hero-copy { max-width: 720px; position: relative; z-index: 2; }
+  .terminal { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 20px 22px;
+    font-family: var(--mono); font-size: 14px; line-height: 1.9; color: var(--amber); box-shadow: 0 0 40px rgba(232,163,61,0.06); }
+  .terminal div { min-height: 1.9em; }
+  .terminal .l2 { color: var(--muted); }
+  h1 { font-family: var(--serif); font-weight: 900; font-size: clamp(42px, 6.4vw, 92px); line-height: 1.02; letter-spacing: -0.02em;
+    color: var(--ink); margin: 36px 0 0; text-wrap: balance; }
+  .hero-fade { opacity: 0; transition: opacity 0.9s ease, transform 0.9s ease; }
+  h1.hero-fade { transform: translateY(18px); }
+  .hero-sub { font-family: var(--mono); font-size: 13.5px; color: var(--muted); margin: 26px 0 0; line-height: 1.8; transition: opacity 1.2s ease 0.2s; }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 34px; transition: opacity 1.2s ease 0.35s; }
+  body.hero-ready .hero-fade { opacity: 1; transform: none; }
+  .btn-solid { font-family: var(--mono); font-size: 14px; color: var(--bg); background: var(--amber); padding: 12px 20px; border-radius: 4px; font-weight: 500; }
+  .btn-solid:hover { background: var(--ink); color: var(--bg); }
+  .btn-ghost { font-family: var(--mono); font-size: 14px; color: var(--amber); border: 1px solid var(--amber); padding: 12px 20px; border-radius: 4px; }
+  .btn-ghost:hover { background: rgba(232,163,61,0.12); color: var(--amber); }
+
+  .hero-img { position: relative; height: min(78vh, 720px); min-height: 420px; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); z-index: 0; }
+  .hero-img img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 22%; filter: grayscale(0.55) contrast(1.08) brightness(0.95); display: block; }
+  .hero-img .veil { position: absolute; inset: 0; background: linear-gradient(to top, #0B0C0E 0%, rgba(11,12,14,0.15) 45%, rgba(11,12,14,0.25) 100%); }
+  .hero-img .tint { position: absolute; inset: 0; background: var(--amber); mix-blend-mode: soft-light; opacity: 0.22; }
+  .hero-img .cap { position: absolute; left: 18px; bottom: 16px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+  /* SECTIONS */
+  section, footer { box-sizing: border-box; }
+  .sec-pad { padding: 110px 6vw; }
+  .kicker { font-family: var(--mono); font-size: 13px; color: var(--amber); margin-bottom: 18px; }
+  h2 { font-family: var(--serif); font-weight: 700; font-size: clamp(30px, 3.6vw, 48px); line-height: 1.1; margin: 0; color: var(--ink); text-wrap: balance; }
+
+  /* FRAMEWORK */
+  #framework { border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 56px; align-items: center; }
+  #framework h2 { margin-bottom: 24px; }
+  #framework .fw-body { font-size: 17px; line-height: 1.75; color: var(--body2); max-width: 56ch; margin: 0 0 42px; }
+  .nodes { display: flex; align-items: center; gap: 0; max-width: 560px; }
+  .node-wrap { display: flex; align-items: center; flex: 1 1 0; min-width: 0; }
+  .node { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; gap: 12px; background: none; border: none; padding: 0; }
+  .node .ring { width: 58px; height: 58px; border-radius: 50%; border: 1.5px solid var(--border2); display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 18px; color: var(--muted); box-shadow: none; transition: all 0.5s ease; background: var(--panel); }
+  .node .lbl { font-family: var(--mono); font-size: 12px; color: var(--muted); transition: color 0.5s ease; }
+  .node.active .ring { border-color: var(--amber); color: var(--amber); box-shadow: 0 0 24px rgba(232,163,61,0.45); }
+  .node.active .lbl { color: var(--amber); }
+  .node-link { flex: 1 1 auto; height: 1px; background: linear-gradient(to right, var(--border2), var(--line)); margin: 0 10px 30px; }
+  .fw-loop { font-family: var(--mono); font-size: 12px; color: var(--dim); margin-top: 18px; }
+  .fw-img { position: relative; height: min(64vh, 560px); min-height: 380px; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); }
+  .fw-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; filter: grayscale(0.7) contrast(1.1) brightness(0.85); display: block; }
+  .fw-img .veil { position: absolute; inset: 0; background: linear-gradient(to top, #0B0C0E, transparent 55%); }
+  .fw-img .tint { position: absolute; inset: 0; background: var(--amber); mix-blend-mode: soft-light; opacity: 0.25; }
+
+  /* TRAYECTORIA */
+  #trayectoria { border-top: 1px solid var(--line); }
+  #trayectoria .head { margin-bottom: 64px; }
+  #track { display: flex; flex-direction: column; gap: 0; max-width: 960px; position: relative; }
+  #trackline { position: absolute; left: 0; top: 0; width: 1px; height: 0%;
+    background: linear-gradient(to bottom, rgba(232,163,61,0.2), var(--amber)); box-shadow: 0 0 10px rgba(232,163,61,0.55); z-index: 1; pointer-events: none; }
+  .entry { position: relative; padding: 0 0 56px 34px; border-left: 1px solid var(--line2); }
+  .entry .dot { position: absolute; left: -5px; top: 6px; width: 9px; height: 9px; border-radius: 50%; background: var(--amber); animation: dotPulse 3s ease-in-out infinite; }
+  .entry .meta { font-family: var(--mono); font-size: 13px; color: var(--muted); display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+  .entry .meta .amber { color: var(--amber); }
+  .entry .meta .ink { color: var(--ink); }
+  .entry .org { font-family: var(--mono); font-size: 12px; color: var(--dim); margin-bottom: 16px; }
+  .entry .decision { font-size: 16.5px; line-height: 1.7; color: #D8D4CA; max-width: 64ch; margin: 0 0 18px; }
+  .entry .decision .dlabel { font-family: var(--mono); font-size: 12.5px; color: var(--amber); margin-right: 8px; }
+  .entry .cons { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 16px 18px;
+    font-family: var(--mono); font-size: 13px; line-height: 2; max-width: 640px; }
+  .entry .cons .clabel { color: var(--dim); margin-bottom: 4px; }
+  .entry .cons [data-line] { color: var(--body2); }
+  .entry .cons [data-line] .amber { color: var(--amber); }
+
+  /* AI (paper) */
+  #ia { background: var(--ink); color: var(--bg); }
+  #ia .head-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 56px; align-items: center; margin-bottom: 72px; }
+  #ia .kicker { color: var(--amber-dark); }
+  #ia h2 { font-weight: 900; font-size: clamp(34px, 4.4vw, 62px); line-height: 1.06; color: var(--bg); letter-spacing: -0.015em; }
+  #ia .ai-img { position: relative; height: min(52vh, 460px); min-height: 320px; border-radius: 8px; overflow: hidden; }
+  #ia .ai-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; filter: grayscale(0.35) contrast(1.05); display: block; }
+  .marquee { overflow: hidden; border-top: 1px solid rgba(11,12,14,0.25); border-bottom: 1px solid rgba(11,12,14,0.25);
+    margin: 0 -6vw 56px; padding: 12px 0; white-space: nowrap; }
+  .marquee .inner { display: inline-flex; gap: 0; animation: marquee 28s linear infinite; will-change: transform; }
+  .marquee span { font-family: var(--mono); font-size: 13px; color: #55503F; letter-spacing: 0.06em; padding-right: 32px; }
+  .pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  .pillar { border: 1px solid rgba(11,12,14,0.18); border-radius: 8px; padding: 26px 24px; background: rgba(255,255,255,0.35);
+    transition: transform 0.25s ease, box-shadow 0.25s ease; }
+  .pillar:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(11,12,14,0.14); }
+  .pillar .plabel { font-family: var(--mono); font-size: 13px; color: var(--amber-dark); margin-bottom: 14px; }
+  .pillar p { font-size: 16px; line-height: 1.65; color: #33353A; margin: 0 0 18px; }
+  .pillar .pstatus { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12px; color: #55503F; }
+  .pillar .pstatus i { width: 7px; height: 7px; border-radius: 50%; background: var(--amber-dark); display: inline-block; animation: inkPulse 2.2s ease-in-out infinite; }
+
+  /* BOOK */
+  #libro { padding: 130px 6vw; border-top: 1px solid var(--line); display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 64px; align-items: center; }
+  .book-stage { position: relative; display: flex; justify-content: center; padding: 32px 0; }
+  .book-stage .glow { position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(232,163,61,0.18), transparent 62%); animation: glowPulse 5s ease-in-out infinite; }
+  .book-stage img { position: relative; width: min(340px, 78%); border-radius: 4px;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.65), 0 0 60px rgba(232,163,61,0.12); transform: rotate(-1.2deg); animation: bookFloat 7s ease-in-out infinite; }
+  .book-copy { max-width: 600px; }
+  .book-copy h2 { font-weight: 900; font-size: clamp(40px, 5vw, 72px); letter-spacing: 0.02em; margin: 0 0 20px; }
+  .book-tag { font-size: 19px; line-height: 1.7; color: var(--body2); margin: 0 0 34px; max-width: 46ch; }
+  .buy-btn { display: inline-block; font-family: var(--mono); font-size: 15px; color: var(--bg); background: var(--amber); padding: 14px 26px; border-radius: 4px; font-weight: 500; }
+  .buy-btn:hover { background: var(--ink); color: var(--bg); }
+  .book-note { font-family: var(--mono); font-size: 13px; color: var(--amber); margin-top: 18px; background: rgba(232,163,61,0.08);
+    border: 1px dashed rgba(232,163,61,0.4); border-radius: 4px; padding: 10px 14px; max-width: 46ch; line-height: 1.7; }
+  .formats { font-family: var(--mono); font-size: 12.5px; color: var(--muted); margin-top: 18px; display: flex; gap: 8px 14px; flex-wrap: wrap; align-items: center; }
+  .formats .fmt { background: none; border: 1px solid var(--border2); border-radius: 3px; font-size: 12.5px; padding: 5px 10px; color: var(--muted); transition: all 0.2s ease; }
+  .formats .fmt.active { border-color: var(--amber); color: var(--amber); }
+  .formats .fmt .price { color: var(--dim); }
+  .formats .other { background: none; border: none; font-size: 12.5px; color: var(--amber); padding: 0; text-decoration: underline; text-underline-offset: 3px; }
+  .markets { margin-top: 16px; background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 14px 18px;
+    font-family: var(--mono); font-size: 12.5px; line-height: 2.1; display: flex; flex-wrap: wrap; gap: 2px 18px; }
+  .markets a { color: var(--body2); }
+  .markets a:hover { color: var(--amber); }
+
+  /* SIDE PROJECTS */
+  #proyectos { border-top: 1px solid var(--line); }
+  #proyectos .head { margin-bottom: 48px; }
+  #proyectos h2 { font-size: clamp(28px, 3.2vw, 42px); }
+  .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 960px; }
+  .project { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 30px 28px; transition: transform 0.25s ease, border-color 0.25s ease; }
+  .project:hover { transform: translateY(-2px); border-color: var(--border2); }
+  .project h3 { font-family: var(--serif); font-weight: 700; font-size: 26px; margin: 0 0 12px; color: var(--ink); }
+  .project p { font-size: 15.5px; line-height: 1.65; color: var(--body2); margin: 0 0 18px; }
+  .project .metrics { font-family: var(--mono); font-size: 13px; color: var(--amber); line-height: 1.9; }
+
+  /* FOOTER */
+  footer { padding: 120px 6vw 60px; border-top: 1px solid var(--line); text-align: center; }
+  footer h2 { font-weight: 900; font-size: clamp(32px, 4.4vw, 60px); margin: 0 0 34px; }
+  .contact-links { display: flex; justify-content: center; gap: 22px; flex-wrap: wrap; font-family: var(--mono); font-size: 14px; margin-bottom: 70px; }
+  .contact-links a { color: var(--body2); }
+  .contact-links a:hover { color: var(--amber); }
+  .contact-links .site { color: var(--dim); }
+  .cycle { display: flex; justify-content: center; align-items: center; gap: 10px; font-family: var(--mono); font-size: 11px; color: var(--dim); margin-bottom: 26px; }
+  .cycle i { width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--amber); display: inline-block; animation: dotPulse 3s ease-in-out infinite; }
+  .cycle i:nth-of-type(2) { animation-delay: 1s; }
+  .cycle i:nth-of-type(3) { animation-delay: 2s; }
+  .copyright { font-family: var(--mono); font-size: 12px; color: var(--dim); }
+  .copyright .cursor { width: 8px; height: 14px; margin-left: 6px; }
+
+  /* MOBILE: full-bleed hero portrait behind the headline */
+  @media (max-width: 720px) {
+    #inicio { grid-template-columns: 1fr; padding: 96px 6vw 56px; }
+    .hero-img { position: absolute; inset: 0; height: 100%; min-height: 0; border-radius: 0; border: none; }
+    .hero-img .veil { background: linear-gradient(to bottom, rgba(11,12,14,0.72) 0%, rgba(11,12,14,0.55) 40%, rgba(11,12,14,0.92) 100%); }
+    .hero-img .cap { display: none; }
+    .sec-pad { padding: 72px 6vw; }
+    #framework, #ia .head-grid { gap: 36px; }
+    #libro { padding: 84px 6vw; gap: 36px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <nav>
+    <a class="brand" href="#inicio">alex.milano<span style="color:var(--amber)">_</span></a>
+    <div class="links">
+      <div class="anchors">
+        <a href="#trayectoria" data-i18n-bracket="navTrack">[trayectoria]</a>
+        <a href="#ia" data-i18n-bracket="navAI">[ia]</a>
+        <a href="#libro" data-i18n-bracket="navBook">[libro]</a>
+        <a href="#contacto" data-i18n-bracket="navContact">[contacto]</a>
+      </div>
+      <div class="langs" role="group" aria-label="Language">
+        <button id="btn-es" type="button">[es]</button>
+        <button id="btn-en" type="button">[en]</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="inicio">
+    <canvas id="particles" aria-hidden="true"></canvas>
+    <div class="hero-copy">
+      <div class="terminal">
+        <div id="tl1"></div>
+        <div id="tl2" class="l2"></div>
+        <div id="tl3"><span id="tl3-text"></span><span class="cursor" aria-hidden="true"></span></div>
+      </div>
+      <h1 class="hero-fade" data-i18n="heroTitle">Tomo decisiones difíciles. Y asumo las consecuencias.</h1>
+      <p class="hero-sub hero-fade">CTO @ MutuaMad Motor Network · AI &amp; Digital Transformation · Author of CONSEQUENCES · Madrid</p>
+      <div class="hero-ctas hero-fade">
+        <a class="btn-solid" href="#trayectoria" data-i18n-bracket="ctaTrack">[ver trayectoria]</a>
+        <a class="btn-ghost" href="#libro" data-i18n-bracket="ctaBook">[el libro]</a>
+      </div>
+    </div>
+    <div class="hero-img" data-reveal>
+      <img src="uploads/_DSC0551.jpg" alt="Alexander Milano">
+      <div class="veil" aria-hidden="true"></div>
+      <div class="tint" aria-hidden="true"></div>
+      <div class="cap">// madrid, 2026</div>
+    </div>
+  </header>
+
+  <!-- FRAMEWORK O→D→C -->
+  <section id="framework" class="sec-pad">
+    <div data-reveal>
+      <div class="kicker">// framework</div>
+      <h2 data-i18n="fwTitle">Oportunidad → Decisión → Consecuencia</h2>
+      <p class="fw-body" data-i18n="fwBody"></p>
+      <div class="nodes" id="nodes"></div>
+      <div class="fw-loop">↺ <span data-i18n="fwLoop">el ciclo se repite</span></div>
+    </div>
+    <div class="fw-img" data-reveal>
+      <img src="uploads/_DSC0146.jpg" alt="Alexander Milano drawing a graph">
+      <div class="veil" aria-hidden="true"></div>
+      <div class="tint" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- TRAYECTORIA -->
+  <section id="trayectoria" class="sec-pad">
+    <div class="head" data-reveal>
+      <div class="kicker">// release log</div>
+      <h2 data-i18n="trackTitle">Trayectoria</h2>
+    </div>
+    <div id="track">
+      <div id="trackline" aria-hidden="true"></div>
+      <div id="entries"></div>
+    </div>
+  </section>
+
+  <!-- AHORA: IA -->
+  <section id="ia" class="sec-pad">
+    <div class="head-grid">
+      <div data-reveal>
+        <div class="kicker">// now_running: ai</div>
+        <h2 data-i18n="aiTitle"></h2>
+      </div>
+      <div class="ai-img" data-reveal>
+        <img src="uploads/_DSC0210.jpg" alt="Alexander Milano">
+      </div>
+    </div>
+    <div class="marquee" aria-hidden="true">
+      <div class="inner">
+        <span>ai voice agents · llm-ops · rag pipelines · programmatic seo · agents in production · evals · fine-tuning · +100 service centers · ship &gt; talk ·&nbsp;</span>
+        <span>ai voice agents · llm-ops · rag pipelines · programmatic seo · agents in production · evals · fine-tuning · +100 service centers · ship &gt; talk ·&nbsp;</span>
+      </div>
+    </div>
+    <div class="pillars" id="pillars"></div>
+  </section>
+
+  <!-- LIBRO -->
+  <section id="libro">
+    <div class="book-stage" data-reveal>
+      <div class="glow" aria-hidden="true"></div>
+      <img src="uploads/magnific__upload__80890.jpeg" alt="CONSEQUENCES — book cover by Alexander Milano">
+    </div>
+    <div class="book-copy" data-reveal>
+      <div class="kicker">// book</div>
+      <h2>CONSEQUENCES</h2>
+      <p class="book-tag" data-i18n="bookTag"></p>
+      <a class="buy-btn" id="buy-btn" href="#" target="_blank" rel="noopener"></a>
+      <div class="book-note" id="book-note" style="display:none"></div>
+      <div class="formats" id="formats"></div>
+      <div class="markets" id="markets" style="display:none"></div>
+    </div>
+  </section>
+
+  <!-- SIDE PROJECTS -->
+  <section id="proyectos" class="sec-pad">
+    <div class="head" data-reveal>
+      <div class="kicker">// side_projects</div>
+      <h2 data-i18n="projTitle">Side projects</h2>
+    </div>
+    <div class="projects" id="projects"></div>
+  </section>
+
+  <!-- CONTACTO / FOOTER -->
+  <footer id="contacto">
+    <div data-reveal>
+      <h2 data-i18n="contactTitle"></h2>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/alexmilano" target="_blank" rel="noopener">linkedin.com/in/alexmilano</a>
+        <a href="mailto:alex.milano@gmail.com">alex.milano@gmail.com</a>
+        <span class="site">alexmilano.com</span>
+      </div>
+      <div class="cycle" aria-hidden="true">
+        <i></i><span>→</span><i></i><span>→</span><i></i><span>↺</span>
+      </div>
+      <div class="copyright">© 2026 alexander milano<span class="cursor" aria-hidden="true"></span></div>
+    </div>
+  </footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var TYPING_SPEED = 32;
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var dict = {
+    es: {
+      navTrack: 'trayectoria', navAI: 'ia', navBook: 'libro', navContact: 'contacto',
+      heroTitle: 'Tomo decisiones difíciles. Y asumo las consecuencias.',
+      ctaTrack: 'ver trayectoria', ctaBook: 'el libro',
+      fwTitle: 'Oportunidad → Decisión → Consecuencia',
+      fwBody: 'Creo que la vida es un ciclo de oportunidades, decisiones y consecuencias. En cada reto, elijo ser quien asume el riesgo, toma la decisión y entrega resultados.',
+      fwLoop: 'el ciclo se repite',
+      trackTitle: 'Trayectoria',
+      decisionLabel: 'decisión', consLabel: 'consecuencia',
+      aiTitle: 'Y ahora, con la IA, empezamos otra vez. A ver qué hacemos esta vez.',
+      bookTag: '20 años decidiendo en tecnología — y lo que vino después.',
+      buyCta: 'comprar en Amazon', otherCountry: '¿otro país?',
+      projTitle: 'Side projects',
+      contactTitle: '¿Hablamos de tu próxima decisión?',
+      nodes: ['Oportunidad', 'Decisión', 'Consecuencia'],
+      pillars: [
+        { label: 'ai-native operations', body: 'Agentes de IA de voz en producción real, no demos.' },
+        { label: 'platforms at scale', body: 'Plataformas programáticas con cientos de miles de páginas indexadas.' },
+        { label: 'teams & transformation', body: 'Equipos que adoptan IA como herramienta diaria de ingeniería.' }
+      ],
+      projects: [
+        { name: 'GuiaPana', desc: 'Plataforma de descubrimiento de restaurantes venezolanos.', metrics: '+11.000 restaurantes · +26.000 páginas · tráfico desde asistentes de IA' },
+        { name: 'Legaltica', desc: 'Directorio legal de España.', metrics: '+200.000 landing pages programáticas' }
+      ],
+      entries: [
+        { years: '2020 → hoy', role: 'CTO', company: 'Aurgi / MutuaMad Motor Network', org: 'Grupo Mutua Madrileña',
+          decision: 'Transformar Autingo en el núcleo digital de Aurgi y Motortown, llevar el negocio al entorno online y convertir la tecnología en el motor de crecimiento del grupo.',
+          cons: ['web de Aurgi: 30.000 € → +500.000 €/mes', '+10 puntos de margen', 'superó 2 due diligences', '2 adquisiciones estratégicas', 'integración al grupo Mutua Madrileña', 'hoy: agentes de IA de voz en producción en +100 centros de servicio'] },
+        { years: '2017 → 2020', role: 'CTO', company: 'Autingo', org: 'Madrid',
+          decision: 'Construir la plataforma de precios cerrados en tiempo real para mantenimiento de vehículos, para casi todos los modelos del mercado.',
+          cons: ['adquirida por Aurgi', 'presupuestos automáticos que elevaron ventas +20%'] },
+        { years: '2015 → 2017', role: 'VP of Engineering & Co-Founder', company: 'Bidwise', org: 'Miami',
+          decision: 'Escalar una plataforma de publicidad por subastas conectando e-commerce con publishers retail.',
+          cons: ['infraestructura escalada y marketplace en crecimiento'] },
+        { years: '2014 → 2015', role: 'CTO & Founder', company: 'Lifekee', org: 'Miami',
+          decision: 'Apostar por blockchain para identidad digital y privacidad cuando casi nadie hablaba de ello.',
+          cons: ['visión adelantada a su tiempo — las ideas que hoy son estándar en gestión de identidad'] },
+        { years: '2009 → 2014', role: 'CTO & Co-Founder', company: '4Geeks', org: 'Venezuela',
+          decision: 'Fundar una startup con dos amigos en un apartamento.',
+          cons: ['0 → 50 desarrolladores en 2 años', '+60 productos digitales', 'clientes como KPMG y Smartmatic', 'hoy 4Geeks Academy está entre las 30 academias de tecnología más reconocidas del mundo'] }
+      ]
+    },
+    en: {
+      navTrack: 'track record', navAI: 'ai', navBook: 'book', navContact: 'contact',
+      heroTitle: 'I make hard decisions. And I own the consequences.',
+      ctaTrack: 'see track record', ctaBook: 'the book',
+      fwTitle: 'Opportunity → Decision → Consequence',
+      fwBody: 'I believe life runs in cycles of opportunities, decisions and consequences. In every challenge, I choose to be the one who takes the risk, makes the call, and delivers.',
+      fwLoop: 'the cycle repeats',
+      trackTitle: 'Track record',
+      decisionLabel: 'decision', consLabel: 'consequence',
+      aiTitle: "And now, with AI, we start again. Let's see what we do this time.",
+      bookTag: '20 years of making the call in tech — and what came after.',
+      buyCta: 'buy on Amazon', otherCountry: 'another country?',
+      projTitle: 'Side projects',
+      contactTitle: "Let's talk about your next decision.",
+      nodes: ['Opportunity', 'Decision', 'Consequence'],
+      pillars: [
+        { label: 'ai-native operations', body: 'AI voice agents in real production, not demos.' },
+        { label: 'platforms at scale', body: 'Programmatic platforms with hundreds of thousands of indexed pages.' },
+        { label: 'teams & transformation', body: 'Teams that adopt AI as a daily engineering tool.' }
+      ],
+      projects: [
+        { name: 'GuiaPana', desc: 'Discovery platform for Venezuelan restaurants.', metrics: '+11,000 restaurants · +26,000 pages · traffic from AI assistants' },
+        { name: 'Legaltica', desc: 'Legal directory for Spain.', metrics: '+200,000 programmatic landing pages' }
+      ],
+      entries: [
+        { years: '2020 → today', role: 'CTO', company: 'Aurgi / MutuaMad Motor Network', org: 'Mutua Madrileña Group',
+          decision: 'Turn Autingo into the digital core of Aurgi and Motortown, take the business online and make technology the growth engine of the group.',
+          cons: ['Aurgi website: €30K → +€500K/month', '+10 margin points', 'passed 2 due diligences', '2 strategic acquisitions', 'integration into the Mutua Madrileña group', 'today: AI voice agents in production across +100 service centers'] },
+        { years: '2017 → 2020', role: 'CTO', company: 'Autingo', org: 'Madrid',
+          decision: 'Build the real-time fixed-price platform for vehicle maintenance, covering almost every model on the market.',
+          cons: ['acquired by Aurgi', 'automated quoting systems that lifted sales +20%'] },
+        { years: '2015 → 2017', role: 'VP of Engineering & Co-Founder', company: 'Bidwise', org: 'Miami',
+          decision: 'Scale an auction-based advertising platform connecting e-commerce with retail publishers.',
+          cons: ['scaled infrastructure and a growing marketplace'] },
+        { years: '2014 → 2015', role: 'CTO & Founder', company: 'Lifekee', org: 'Miami',
+          decision: 'Bet on blockchain for digital identity and privacy when almost nobody was talking about it.',
+          cons: ['a vision ahead of its time — ideas that are now standard in identity management'] },
+        { years: '2009 → 2014', role: 'CTO & Co-Founder', company: '4Geeks', org: 'Venezuela',
+          decision: 'Found a startup with two friends in an apartment.',
+          cons: ['0 → 50 developers in 2 years', '+60 digital products', 'clients like KPMG and Smartmatic', 'today 4Geeks Academy ranks among the 30 most recognized tech academies in the world'] }
+      ]
+    }
+  };
+
+  var book = {
+    kindle: { asin: 'B0GZP53J9L', price: '€5,99',
+      domains: ['com', 'co.uk', 'de', 'fr', 'es', 'it', 'nl', 'co.jp', 'com.br', 'ca', 'com.mx', 'com.au', 'in'] },
+    paperback: { asin: 'B0H26VQYMY', price: '€17,31',
+      domains: ['com', 'co.uk', 'de', 'fr', 'es', 'it', 'nl', 'pl', 'se', 'com.be', 'ie', 'co.jp', 'ca', 'com.au'] },
+    hardcover: { asin: 'B0H26HC6K5', price: '€24,04',
+      domains: ['com', 'co.uk', 'de', 'fr', 'es', 'it', 'nl', 'pl', 'se', 'com.be', 'ie'] }
+  };
+
+  var state = { lang: 'es', activeNode: 0, format: 'paperback', marketsOpen: false };
+
+  function t() { return dict[state.lang] || dict.es; }
+
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  /* ---------- language ---------- */
+
+  function detectLang() {
+    var lang = null;
+    try { lang = sessionStorage.getItem('am-lang'); } catch (e) {}
+    if (!lang) {
+      lang = ((navigator.language || 'en').toLowerCase().indexOf('es') === 0) ? 'es' : 'en';
+    }
+    return lang === 'en' ? 'en' : 'es';
+  }
+
+  function applyLang() {
+    var d = t();
+    document.documentElement.lang = state.lang;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      el.textContent = d[el.getAttribute('data-i18n')];
+    });
+    document.querySelectorAll('[data-i18n-bracket]').forEach(function (el) {
+      el.textContent = '[' + d[el.getAttribute('data-i18n-bracket')] + ']';
+    });
+    document.getElementById('btn-es').classList.toggle('active', state.lang === 'es');
+    document.getElementById('btn-en').classList.toggle('active', state.lang === 'en');
+    renderNodes();
+    renderEntries();
+    renderPillars();
+    renderProjects();
+    renderBook();
+    setupReveals();
+  }
+
+  function setLang(lang) {
+    try { sessionStorage.setItem('am-lang', lang); } catch (e) {}
+    state.lang = lang;
+    applyLang();
+  }
+
+  document.getElementById('btn-es').addEventListener('click', function () { setLang('es'); });
+  document.getElementById('btn-en').addEventListener('click', function () { setLang('en'); });
+
+  /* ---------- framework nodes ---------- */
+
+  function renderNodes() {
+    var wrap = document.getElementById('nodes');
+    var letters = ['O', 'D', 'C'];
+    wrap.innerHTML = t().nodes.map(function (label, i) {
+      return '<div class="node-wrap">' +
+        '<button type="button" class="node' + (i === state.activeNode ? ' active' : '') + '" data-node="' + i + '">' +
+          '<span class="ring" aria-hidden="true">' + letters[i] + '</span>' +
+          '<span class="lbl">' + esc(label) + '</span>' +
+        '</button>' +
+        (i < 2 ? '<div class="node-link" aria-hidden="true"></div>' : '') +
+      '</div>';
+    }).join('');
+    wrap.querySelectorAll('.node').forEach(function (btn) {
+      var i = parseInt(btn.getAttribute('data-node'), 10);
+      var on = function () { setActiveNode(i); };
+      btn.addEventListener('mouseenter', on);
+      btn.addEventListener('focus', on);
+    });
+  }
+
+  function setActiveNode(i) {
+    state.activeNode = i;
+    document.querySelectorAll('#nodes .node').forEach(function (btn, j) {
+      btn.classList.toggle('active', j === i);
+    });
+  }
+
+  setInterval(function () { setActiveNode((state.activeNode + 1) % 3); }, 2400);
+
+  /* ---------- trayectoria ---------- */
+
+  function renderEntries() {
+    var d = t();
+    document.getElementById('entries').innerHTML = d.entries.map(function (e) {
+      return '<article class="entry" data-reveal>' +
+        '<span class="dot" aria-hidden="true"></span>' +
+        '<div class="meta"><span class="amber">' + esc(e.years) + '</span><span>·</span><span>' + esc(e.role) + '</span><span>·</span><span class="ink">' + esc(e.company) + '</span></div>' +
+        '<div class="org">' + esc(e.org) + '</div>' +
+        '<p class="decision"><span class="dlabel">' + esc(d.decisionLabel) + ' →</span>' + esc(e.decision) + '</p>' +
+        '<div class="cons">' +
+          '<div class="clabel">' + esc(d.consLabel) + ':</div>' +
+          e.cons.map(function (c) { return '<div data-line><span class="amber">+</span> ' + esc(c) + '</div>'; }).join('') +
+        '</div>' +
+      '</article>';
+    }).join('');
+  }
+
+  var trackProgress = 0;
+  function applyTrackLine() {
+    var el = document.getElementById('trackline');
+    var parent = document.getElementById('track');
+    if (!el || !parent) return;
+    var r = parent.getBoundingClientRect();
+    var vh = window.innerHeight;
+    var p = Math.max(0, Math.min(1, (vh * 0.8 - r.top) / (r.height + vh * 0.3)));
+    trackProgress = p;
+    el.style.height = (p * 100).toFixed(2) + '%';
+  }
+  var scrollRaf = null;
+  window.addEventListener('scroll', function () {
+    if (scrollRaf) return;
+    scrollRaf = requestAnimationFrame(function () { scrollRaf = null; applyTrackLine(); });
+  }, { passive: true });
+
+  /* ---------- pillars & projects ---------- */
+
+  function renderPillars() {
+    var statuses = ['status: in_production', 'status: indexing', 'status: shipping_daily'];
+    document.getElementById('pillars').innerHTML = t().pillars.map(function (p, i) {
+      return '<div class="pillar" data-reveal>' +
+        '<div class="plabel">' + esc(p.label) + '</div>' +
+        '<p>' + esc(p.body) + '</p>' +
+        '<div class="pstatus"><i aria-hidden="true" style="animation-delay:' + (i * 0.6) + 's"></i><span>' + statuses[i] + '</span></div>' +
+      '</div>';
+    }).join('');
+  }
+
+  function renderProjects() {
+    document.getElementById('projects').innerHTML = t().projects.map(function (pr) {
+      return '<div class="project" data-reveal>' +
+        '<h3>' + esc(pr.name) + '</h3>' +
+        '<p>' + esc(pr.desc) + '</p>' +
+        '<div class="metrics">' + esc(pr.metrics) + '</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  /* ---------- book ---------- */
+
+  function preferredDomain() {
+    var tz = '';
+    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+    var nl = (navigator.language || '').toLowerCase();
+    if (nl.indexOf('es-mx') === 0 || tz.indexOf('America/Mexico') === 0) return 'com.mx';
+    if (nl.indexOf('pt-br') === 0 || tz.indexOf('America/Sao_Paulo') === 0) return 'com.br';
+    if (nl.indexOf('es') === 0) return 'es';
+    if (nl.indexOf('de') === 0 || tz === 'Europe/Berlin') return 'de';
+    if (nl.indexOf('fr') === 0 || tz === 'Europe/Paris') return 'fr';
+    if (nl.indexOf('it') === 0 || tz === 'Europe/Rome') return 'it';
+    if (nl.indexOf('nl') === 0 || tz === 'Europe/Amsterdam') return 'nl';
+    if (nl.indexOf('pl') === 0 || tz === 'Europe/Warsaw') return 'pl';
+    if (nl.indexOf('sv') === 0 || tz === 'Europe/Stockholm') return 'se';
+    if (nl.indexOf('ja') === 0 || tz === 'Asia/Tokyo') return 'co.jp';
+    if (nl.indexOf('en-gb') === 0 || tz === 'Europe/London') return 'co.uk';
+    if (nl.indexOf('en-ie') === 0 || tz === 'Europe/Dublin') return 'ie';
+    if (nl.indexOf('en-au') === 0 || tz.indexOf('Australia/') === 0) return 'com.au';
+    if (nl.indexOf('en-ca') === 0 || tz.indexOf('America/Toronto') === 0) return 'ca';
+    if (nl.indexOf('en-in') === 0 || tz === 'Asia/Kolkata') return 'in';
+    return 'com';
+  }
+
+  function amazonUrl() {
+    var fmt = book[state.format];
+    var d = preferredDomain();
+    if (fmt.domains.indexOf(d) < 0) d = 'com';
+    return 'https://www.amazon.' + d + '/dp/' + fmt.asin;
+  }
+
+  function renderBook() {
+    var d = t();
+    var buy = document.getElementById('buy-btn');
+    buy.textContent = '[' + d.buyCta + ']';
+    buy.href = amazonUrl();
+
+    var note = document.getElementById('book-note');
+    if (state.lang === 'en') {
+      note.textContent = '// heads up: written in Spanish (for now). english_version: compiling… — I make hard decisions, remember?';
+      note.style.display = 'block';
+    } else {
+      note.style.display = 'none';
+    }
+
+    var fmtLabels = state.lang === 'es'
+      ? { kindle: 'kindle', paperback: 'tapa blanda', hardcover: 'tapa dura' }
+      : { kindle: 'kindle', paperback: 'paperback', hardcover: 'hardcover' };
+    var formatsEl = document.getElementById('formats');
+    formatsEl.innerHTML = ['kindle', 'paperback', 'hardcover'].map(function (k) {
+      return '<button type="button" class="fmt' + (state.format === k ? ' active' : '') + '" data-fmt="' + k + '">' +
+        esc(fmtLabels[k]) + '<span class="price"> ' + book[k].price + '</span></button>';
+    }).join('') +
+    '<button type="button" class="other" id="toggle-markets">' + esc(d.otherCountry) + '</button>';
+
+    formatsEl.querySelectorAll('.fmt').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        state.format = btn.getAttribute('data-fmt');
+        renderBook();
+      });
+    });
+    document.getElementById('toggle-markets').addEventListener('click', function () {
+      state.marketsOpen = !state.marketsOpen;
+      renderBook();
+    });
+
+    var marketsEl = document.getElementById('markets');
+    if (state.marketsOpen) {
+      var fmt = book[state.format];
+      marketsEl.innerHTML = fmt.domains.map(function (dom) {
+        return '<a href="https://www.amazon.' + dom + '/dp/' + fmt.asin + '" target="_blank" rel="noopener">amazon.' + dom + '</a>';
+      }).join('');
+      marketsEl.style.display = 'flex';
+    } else {
+      marketsEl.style.display = 'none';
+    }
+  }
+
+  /* ---------- reveals ---------- */
+
+  var io = null;
+  function setupReveals() {
+    if (reduced) return;
+    if (io) io.disconnect();
+    var els = document.querySelectorAll('[data-reveal], [data-line]');
+    io = new IntersectionObserver(function (ents) {
+      ents.forEach(function (en) {
+        if (en.isIntersecting) {
+          en.target.style.opacity = '1';
+          en.target.style.transform = 'none';
+          io.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(function (el) {
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.92) {
+        el.style.opacity = '';
+        el.style.transform = '';
+        return;
+      }
+      var isLine = el.hasAttribute('data-line');
+      var delay = 0;
+      if (isLine) {
+        var sibs = Array.prototype.filter.call(el.parentElement.children, function (c) { return c.hasAttribute('data-line'); });
+        delay = sibs.indexOf(el) * 110;
+      }
+      el.style.opacity = '0';
+      el.style.transform = isLine ? 'translateX(-14px)' : 'translateY(26px)';
+      el.style.transition = 'opacity 0.6s ease ' + delay + 'ms, transform 0.6s ease ' + delay + 'ms';
+      io.observe(el);
+    });
+  }
+
+  /* ---------- typing ---------- */
+
+  function runTyping() {
+    var lines = ['> alex.milano --run', 'compiling 20 years of decisions...', 'output:'];
+    var els = [document.getElementById('tl1'), document.getElementById('tl2'), document.getElementById('tl3-text')];
+    if (reduced) {
+      els[0].textContent = lines[0];
+      els[1].textContent = lines[1];
+      els[2].textContent = lines[2];
+      document.body.classList.add('hero-ready');
+      return;
+    }
+    var li = 0, ci = 0;
+    function tick() {
+      if (li >= lines.length) {
+        setTimeout(function () { document.body.classList.add('hero-ready'); }, 350);
+        return;
+      }
+      ci++;
+      els[li].textContent = lines[li].slice(0, ci);
+      var delay = TYPING_SPEED;
+      if (ci >= lines[li].length) { li++; ci = 0; delay = li === 1 ? 500 : 320; }
+      setTimeout(tick, delay);
+    }
+    setTimeout(tick, 500);
+  }
+
+  /* ---------- particles ---------- */
+
+  function startParticles() {
+    var canvas = document.getElementById('particles');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    function fit() {
+      var r = canvas.getBoundingClientRect();
+      w = r.width; h = r.height;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    fit();
+    window.addEventListener('resize', fit);
+
+    var N = Math.min(85, Math.round((w * h) / 20000));
+    var pts = [];
+    for (var i = 0; i < N; i++) {
+      pts.push({
+        x: Math.random() * w, y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.9, vy: (Math.random() - 0.5) * 0.9,
+        r: 1.2 + Math.random() * 2.2,
+        tw: Math.random() * Math.PI * 2
+      });
+    }
+    var mouse = { x: -9999, y: -9999 };
+    window.addEventListener('pointermove', function (e) {
+      var r = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+    });
+
+    var LINK = 160;
+    var tm = 0;
+    function draw() {
+      tm += 0.016;
+      ctx.clearRect(0, 0, w, h);
+      for (var i = 0; i < pts.length; i++) {
+        var p = pts[i];
+        for (var j = i + 1; j < pts.length; j++) {
+          var q = pts[j];
+          var dx = p.x - q.x, dy = p.y - q.y;
+          var d2 = dx * dx + dy * dy;
+          if (d2 < LINK * LINK) {
+            var a = (1 - Math.sqrt(d2) / LINK) * 0.16;
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
+            ctx.strokeStyle = 'rgba(232,163,61,' + a.toFixed(3) + ')';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+        var dxm = mouse.x - p.x, dym = mouse.y - p.y;
+        var dm = Math.hypot(dxm, dym);
+        if (dm < 200) {
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y);
+          ctx.strokeStyle = 'rgba(232,163,61,' + ((1 - dm / 200) * 0.28).toFixed(3) + ')';
+          ctx.lineWidth = 1;
+          ctx.stroke();
+          p.x += (dxm / dm) * 0.35; p.y += (dym / dm) * 0.35;
+        }
+      }
+      for (var k = 0; k < pts.length; k++) {
+        var pt = pts[k];
+        pt.x += pt.vx; pt.y += pt.vy;
+        if (pt.x < -10) pt.x = w + 10; if (pt.x > w + 10) pt.x = -10;
+        if (pt.y < -10) pt.y = h + 10; if (pt.y > h + 10) pt.y = -10;
+        var glow = 0.55 + 0.45 * Math.sin(tm * 2 + pt.tw);
+        ctx.beginPath();
+        ctx.arc(pt.x, pt.y, pt.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(232,163,61,' + (0.2 + glow * 0.3).toFixed(3) + ')';
+        ctx.shadowColor = 'rgba(232,163,61,0.5)';
+        ctx.shadowBlur = 4 * glow;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+      if (!reduced) requestAnimationFrame(draw);
+    }
+    draw();
+  }
+
+  /* ---------- init ---------- */
+
+  state.lang = detectLang();
+  applyLang();
+  startParticles();
+  applyTrackLine();
+  runTyping();
+})();
+</script>
+</body>
+</html>
