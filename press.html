@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kit de prensa — Alexander Milano</title>
+<meta name="description" content="Kit de prensa de Alexander Milano: bio oficial, datos rápidos y fotos en alta resolución. / Press kit for Alexander Milano: official bio, quick facts and high-resolution photos.">
+<meta property="og:title" content="Kit de prensa — Alexander Milano">
+<meta property="og:description" content="Bio oficial, datos rápidos y fotos en alta resolución. / Official bio, quick facts and high-resolution photos.">
+<meta property="og:url" content="https://alexmilano.com/press.html">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B0C0E;
+    --ink: #F2EDE3;
+    --amber: #E8A33D;
+    --amber-dark: #9A6B1F;
+    --muted: #8A8D93;
+    --dim: #55585F;
+    --body2: #B9BBC0;
+    --line: #24262B;
+    --line2: #2C2F35;
+    --border2: #3A3D44;
+    --card: #111216;
+    --panel: #0E0F12;
+    --mono: 'IBM Plex Mono', monospace;
+    --serif: 'Fraunces', serif;
+  }
+  html { scroll-behavior: smooth; overflow-x: clip; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'IBM Plex Sans', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+  a { color: var(--amber); text-decoration: none; }
+  a:hover { color: var(--ink); }
+  ::selection { background: var(--amber); color: var(--bg); }
+  :focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+  button { font-family: var(--mono); cursor: pointer; }
+  a, button { touch-action: manipulation; }
+
+  .scanlines { position: fixed; inset: 0; z-index: 60; pointer-events: none; opacity: 0.05;
+    background: repeating-linear-gradient(to bottom, rgba(232,163,61,0.5) 0px, rgba(232,163,61,0.5) 1px, transparent 1px, transparent 4px); }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; gap: 16px;
+    padding: 14px 24px; background: rgba(11,12,14,0.82); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);
+    font-family: var(--mono); font-size: 13px; }
+  nav .brand { color: var(--ink); font-weight: 500; letter-spacing: 0.04em; padding: 4px 0; }
+  nav .brand:hover { color: var(--ink); }
+  nav .anchors { display: flex; gap: 14px; margin-left: auto; }
+  nav .anchors a { color: var(--muted); padding: 4px 2px; }
+  nav .anchors a:hover { color: var(--amber); }
+  nav .langs { display: flex; gap: 6px; }
+  nav .langs button { background: none; border: none; font-size: 13px; padding: 4px 6px; color: var(--dim); }
+  nav .langs button.active { color: var(--amber); }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 130px 6vw 80px; box-sizing: border-box; }
+  .kicker { font-family: var(--mono); font-size: 13px; color: var(--amber); margin-bottom: 18px; }
+  h1 { font-family: var(--serif); font-weight: 900; font-size: clamp(36px, 5vw, 64px); line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 14px; text-wrap: balance; }
+  .lead { font-size: 17px; line-height: 1.7; color: var(--body2); max-width: 56ch; margin: 0 0 64px; }
+  h2 { font-family: var(--serif); font-weight: 700; font-size: clamp(24px, 3vw, 34px); margin: 0 0 24px; }
+  section { margin-bottom: 72px; }
+
+  .facts { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 22px 24px;
+    font-family: var(--mono); font-size: 13.5px; line-height: 2.2; max-width: 640px; }
+  .facts .k { color: var(--dim); }
+  .facts .v { color: var(--body2); }
+  .facts a { color: var(--amber); }
+  .facts a:hover { color: var(--ink); }
+
+  .bio { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 26px 26px 22px; max-width: 760px; margin-bottom: 22px; }
+  .bio .bio-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+  .bio .blabel { font-family: var(--mono); font-size: 12.5px; color: var(--amber); }
+  .bio p { font-size: 15.5px; line-height: 1.75; color: var(--body2); margin: 0 0 14px; }
+  .bio p:last-child { margin-bottom: 0; }
+  .copy-btn { background: none; border: 1px solid var(--border2); border-radius: 4px; color: var(--muted);
+    font-size: 12.5px; padding: 8px 12px; transition: all 0.2s ease; }
+  .copy-btn:hover { border-color: var(--amber); color: var(--amber); }
+  .copy-btn.done { border-color: var(--amber); color: var(--amber); }
+
+  .photos { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; max-width: 960px; }
+  .photo { background: var(--card); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; filter: grayscale(0.4) contrast(1.05); }
+  .photo .pmeta { display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 14px 16px; font-family: var(--mono); font-size: 12px; color: var(--dim); }
+  .photo .pmeta a { color: var(--amber); padding: 4px 0; }
+  .photo .pmeta a:hover { color: var(--ink); }
+  .photos-note { font-family: var(--mono); font-size: 12px; color: var(--dim); margin-top: 18px; max-width: 70ch; line-height: 1.8; }
+
+  footer { border-top: 1px solid var(--line); padding: 40px 6vw; text-align: center;
+    font-family: var(--mono); font-size: 12px; color: var(--dim); }
+  footer a { color: var(--muted); }
+  footer a:hover { color: var(--amber); }
+
+  @media (max-width: 720px) {
+    nav { flex-wrap: wrap; row-gap: 2px; padding: 10px 18px; font-size: 12.5px; }
+    nav .langs { order: 1; margin-left: auto; }
+    nav .anchors { order: 2; width: 100%; margin-left: 0; gap: 4px 12px; flex-wrap: wrap; }
+    nav .anchors a, nav .langs button { padding: 8px 4px; }
+    main { padding: 120px 6vw 60px; }
+    section { margin-bottom: 56px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <nav>
+    <a class="brand" href="/">alex.milano<span style="color:var(--amber)">_</span></a>
+    <div class="anchors">
+      <a href="/" data-i18n-bracket="navHome">[← home]</a>
+      <a href="/odc.html">[o→d→c]</a>
+    </div>
+    <div class="langs" role="group" aria-label="Language">
+      <button id="btn-es" type="button">[es]</button>
+      <button id="btn-en" type="button">[en]</button>
+    </div>
+  </nav>
+
+  <main>
+    <div class="kicker">// press_kit</div>
+    <h1 data-i18n="title">Kit de prensa</h1>
+    <p class="lead" data-i18n="lead"></p>
+
+    <section aria-labelledby="facts-title">
+      <h2 id="facts-title" data-i18n="factsTitle">Datos rápidos</h2>
+      <div class="facts">
+        <div><span class="k">nombre……… </span><span class="v">Alexander Milano</span></div>
+        <div><span class="k" data-i18n="factRole">cargo………… </span><span class="v">CTO @ MutuaMad Motor Network (Grupo Mutua Madrileña)</span></div>
+        <div><span class="k" data-i18n="factBook">libro………… </span><span class="v">CONSEQUENCES (2025)</span></div>
+        <div><span class="k" data-i18n="factLoc">ubicación… </span><span class="v">Madrid</span></div>
+        <div><span class="k">web…………… </span><a href="https://alexmilano.com">alexmilano.com</a></div>
+        <div><span class="k">linkedin… </span><a href="https://www.linkedin.com/in/alexmilano" target="_blank" rel="noopener">linkedin.com/in/alexmilano</a></div>
+        <div><span class="k">email……… </span><a href="mailto:alex.milano@gmail.com">alex.milano@gmail.com</a></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="bios-title">
+      <h2 id="bios-title" data-i18n="biosTitle">Bios oficiales</h2>
+
+      <div class="bio">
+        <div class="bio-head">
+          <span class="blabel" data-i18n="bioShortLabel">// bio corta (~50 palabras)</span>
+          <button type="button" class="copy-btn" data-copy="bio-short" data-i18n-bracket="copyCta">[copiar]</button>
+        </div>
+        <div id="bio-short"><p data-i18n="bioShort"></p></div>
+      </div>
+
+      <div class="bio">
+        <div class="bio-head">
+          <span class="blabel" data-i18n="bioLongLabel">// bio larga (~150 palabras)</span>
+          <button type="button" class="copy-btn" data-copy="bio-long" data-i18n-bracket="copyCta">[copiar]</button>
+        </div>
+        <div id="bio-long">
+          <p data-i18n="bioLong1"></p>
+          <p data-i18n="bioLong2"></p>
+          <p data-i18n="bioLong3"></p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="photos-title">
+      <h2 id="photos-title" data-i18n="photosTitle">Fotos oficiales</h2>
+      <div class="photos">
+        <div class="photo">
+          <img src="uploads/_DSC0551.jpg" alt="Alexander Milano — retrato vertical" loading="lazy" width="800" height="1000">
+          <div class="pmeta"><span>_DSC0551.jpg</span><a href="uploads/_DSC0551.jpg" download data-i18n-bracket="dlCta">[descargar]</a></div>
+        </div>
+        <div class="photo">
+          <img src="uploads/_DSC0146.jpg" alt="Alexander Milano — trabajando en pizarra" loading="lazy" width="800" height="1000">
+          <div class="pmeta"><span>_DSC0146.jpg</span><a href="uploads/_DSC0146.jpg" download data-i18n-bracket="dlCta">[descargar]</a></div>
+        </div>
+        <div class="photo">
+          <img src="uploads/_DSC0210.jpg" alt="Alexander Milano — retrato" loading="lazy" width="800" height="1000">
+          <div class="pmeta"><span>_DSC0210.jpg</span><a href="uploads/_DSC0210.jpg" download data-i18n-bracket="dlCta">[descargar]</a></div>
+        </div>
+      </div>
+      <p class="photos-note" data-i18n="photosNote"></p>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 alexander milano · <a href="/">alexmilano.com</a>
+  </footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var dict = {
+    es: {
+      navHome: '← home',
+      metaDesc: 'Kit de prensa de Alexander Milano: bio oficial, datos rápidos y fotos en alta resolución.',
+      title: 'Kit de prensa',
+      lead: 'Bio oficial, datos rápidos y fotos en alta resolución de Alexander Milano — listos para copiar y descargar.',
+      factsTitle: 'Datos rápidos',
+      factRole: 'cargo………… ', factBook: 'libro………… ', factLoc: 'ubicación… ',
+      biosTitle: 'Bios oficiales',
+      bioShortLabel: '// bio corta (~50 palabras)',
+      bioLongLabel: '// bio larga (~150 palabras)',
+      copyCta: 'copiar', copiedCta: 'copiado ✓',
+      bioShort: 'Alexander Milano es CTO de MutuaMad Motor Network (Grupo Mutua Madrileña) y autor de CONSEQUENCES (2025). En 20 años ha fundado y escalado compañías tecnológicas entre Venezuela, Miami y Madrid, y ha llevado el negocio digital de Aurgi de 30.000 € a más de 500.000 € al mes.',
+      bioLong1: 'Alexander Milano es CTO de MutuaMad Motor Network —Aurgi, Motortown y Autingo, del Grupo Mutua Madrileña—, donde lidera la transformación digital y la adopción de IA del grupo: agentes de voz con IA en producción en más de 100 centros de servicio y plataformas programáticas con cientos de miles de páginas indexadas.',
+      bioLong2: 'Empezó en Venezuela cofundando 4Geeks, que pasó de un apartamento a 50 desarrolladores con clientes como KPMG y Smartmatic. En Miami fue cofundador y VP de Ingeniería de Bidwise. Ya en Madrid, como CTO de Autingo construyó la plataforma de precios cerrados para el mantenimiento de vehículos, adquirida después por Aurgi — cuyo negocio online llevó de 30.000 € a más de 500.000 € al mes.',
+      bioLong3: 'Es autor de CONSEQUENCES (2025), donde destila 20 años de decisiones tecnológicas en su framework Oportunidad → Decisión → Consecuencia. Vive en Madrid.',
+      photosTitle: 'Fotos oficiales',
+      dlCta: 'descargar',
+      photosNote: '// uso editorial permitido con crédito «Alexander Milano». Para originales en máxima resolución: alex.milano@gmail.com'
+    },
+    en: {
+      navHome: '← home',
+      metaDesc: 'Press kit for Alexander Milano: official bio, quick facts and high-resolution photos.',
+      title: 'Press kit',
+      lead: 'Official bio, quick facts and high-resolution photos of Alexander Milano — ready to copy and download.',
+      factsTitle: 'Quick facts',
+      factRole: 'role…………… ', factBook: 'book…………… ', factLoc: 'location… ',
+      biosTitle: 'Official bios',
+      bioShortLabel: '// short bio (~50 words)',
+      bioLongLabel: '// long bio (~150 words)',
+      copyCta: 'copy', copiedCta: 'copied ✓',
+      bioShort: 'Alexander Milano is CTO of MutuaMad Motor Network (Mutua Madrileña Group) and author of CONSEQUENCES (2025). Over 20 years he has founded and scaled tech companies across Venezuela, Miami and Madrid, and grew Aurgi’s digital business from €30K to over €500K per month.',
+      bioLong1: 'Alexander Milano is CTO of MutuaMad Motor Network — Aurgi, Motortown and Autingo, part of the Mutua Madrileña Group — where he leads the group’s digital transformation and AI adoption: AI voice agents in production across more than 100 service centers and programmatic platforms with hundreds of thousands of indexed pages.',
+      bioLong2: 'He started out in Venezuela co-founding 4Geeks, which grew from an apartment to 50 developers with clients like KPMG and Smartmatic. In Miami he was co-founder and VP of Engineering at Bidwise. In Madrid, as CTO of Autingo, he built the real-time fixed-price platform for vehicle maintenance later acquired by Aurgi — whose online business he grew from €30K to over €500K per month.',
+      bioLong3: 'He is the author of CONSEQUENCES (2025), where he distills 20 years of technology decisions into his Opportunity → Decision → Consequence framework. He lives in Madrid.',
+      photosTitle: 'Official photos',
+      dlCta: 'download',
+      photosNote: '// editorial use allowed with credit “Alexander Milano”. For full-resolution originals: alex.milano@gmail.com'
+    }
+  };
+
+  var state = { lang: 'es' };
+  function t() { return dict[state.lang] || dict.es; }
+
+  function detectLang() {
+    var lang = null;
+    try { lang = sessionStorage.getItem('am-lang'); } catch (e) {}
+    if (!lang) {
+      lang = ((navigator.language || 'en').toLowerCase().indexOf('es') === 0) ? 'es' : 'en';
+    }
+    return lang === 'en' ? 'en' : 'es';
+  }
+
+  function applyLang() {
+    var d = t();
+    document.documentElement.lang = state.lang;
+    document.title = state.lang === 'es' ? 'Kit de prensa — Alexander Milano' : 'Press kit — Alexander Milano';
+    var md = document.querySelector('meta[name="description"]');
+    if (md) md.setAttribute('content', d.metaDesc);
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      el.textContent = d[el.getAttribute('data-i18n')];
+    });
+    document.querySelectorAll('[data-i18n-bracket]').forEach(function (el) {
+      el.textContent = '[' + d[el.getAttribute('data-i18n-bracket')] + ']';
+    });
+    document.getElementById('btn-es').classList.toggle('active', state.lang === 'es');
+    document.getElementById('btn-en').classList.toggle('active', state.lang === 'en');
+  }
+
+  function setLang(lang) {
+    try { sessionStorage.setItem('am-lang', lang); } catch (e) {}
+    state.lang = lang;
+    applyLang();
+  }
+
+  document.getElementById('btn-es').addEventListener('click', function () { setLang('es'); });
+  document.getElementById('btn-en').addEventListener('click', function () { setLang('en'); });
+
+  /* ---------- copy to clipboard ---------- */
+
+  function copyText(text, done) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { legacyCopy(text, done); });
+    } else {
+      legacyCopy(text, done);
+    }
+  }
+
+  function legacyCopy(text, done) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+    done();
+  }
+
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var src = document.getElementById(btn.getAttribute('data-copy'));
+      var text = Array.prototype.map.call(src.querySelectorAll('p'), function (p) { return p.textContent; }).join('\n\n');
+      copyText(text, function () {
+        btn.classList.add('done');
+        btn.textContent = '[' + t().copiedCta + ']';
+        setTimeout(function () {
+          btn.classList.remove('done');
+          btn.textContent = '[' + t().copyCta + ']';
+        }, 2000);
+      });
+    });
+  });
+
+  state.lang = detectLang();
+  applyLang();
+})();
+</script>
+</body>
+</html>
