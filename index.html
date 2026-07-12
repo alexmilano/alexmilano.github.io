@@ -178,6 +178,31 @@
   .markets a { color: var(--body2); }
   .markets a:hover { color: var(--amber); }
 
+  /* NEWSLETTER */
+  #newsletter { border-top: 1px solid var(--line); }
+  #newsletter .news-box { max-width: 640px; }
+  .news-sub { font-size: 18px; line-height: 1.7; color: var(--body2); margin: 18px 0 34px; max-width: 46ch; }
+  .news-form { display: flex; align-items: center; gap: 10px; background: var(--panel); border: 1px solid var(--line);
+    border-radius: 6px; padding: 6px 6px 6px 16px; font-family: var(--mono); max-width: 560px; box-shadow: 0 0 40px rgba(232,163,61,0.06); }
+  .news-form:focus-within { border-color: var(--border2); }
+  .news-form .prompt { color: var(--amber); font-size: 15px; flex: 0 0 auto; }
+  .news-form input { flex: 1 1 auto; min-width: 0; background: none; border: none; outline: none;
+    color: var(--ink); font-family: var(--mono); font-size: 14px; padding: 12px 0; }
+  .news-form input::placeholder { color: var(--dim); }
+  .news-form button { flex: 0 0 auto; background: var(--amber); color: var(--bg); border: none; border-radius: 4px;
+    padding: 12px 16px; font-size: 13.5px; font-weight: 500; }
+  .news-form button:hover { background: var(--ink); }
+  .news-micro { font-family: var(--mono); font-size: 12px; color: var(--dim); margin: 14px 0 0; }
+  .news-fallback { font-family: var(--mono); font-size: 12.5px; margin: 8px 0 0; }
+  .news-fallback a { color: var(--muted); }
+  .news-fallback a:hover { color: var(--amber); }
+  @media (max-width: 480px) {
+    .news-form { flex-wrap: wrap; padding: 12px 14px; }
+    .news-form input { flex: 1 1 100%; order: 0; width: 100%; }
+    .news-form .prompt { order: -1; }
+    .news-form button { flex: 1 1 100%; order: 1; padding: 14px 16px; }
+  }
+
   /* SIDE PROJECTS */
   #proyectos { border-top: 1px solid var(--line); }
   #proyectos .head { margin-bottom: 48px; }
@@ -339,6 +364,23 @@
     </div>
   </section>
 
+  <!-- NEWSLETTER -->
+  <section id="newsletter" class="sec-pad">
+    <div class="news-box" data-reveal>
+      <div class="kicker">// newsletter</div>
+      <h2>Consecuencias</h2>
+      <p class="news-sub" data-i18n="newsSub"></p>
+      <form class="news-form" id="news-form" novalidate>
+        <span class="prompt" aria-hidden="true">&gt;</span>
+        <input type="email" id="news-email" name="email" required autocomplete="email"
+          data-i18n-ph="newsPh" data-i18n-aria="newsAria" placeholder="tu@email.com" aria-label="email">
+        <button type="submit" data-i18n-bracket="newsCta">[suscribirme]</button>
+      </form>
+      <p class="news-micro" data-i18n="newsMicro"></p>
+      <p class="news-fallback"><a id="news-link" href="#" target="_blank" rel="noopener"></a></p>
+    </div>
+  </section>
+
   <!-- SIDE PROJECTS -->
   <section id="proyectos" class="sec-pad">
     <div class="head" data-reveal>
@@ -369,6 +411,8 @@
   'use strict';
 
   var TYPING_SPEED = 32;
+  // TODO: reemplazar con la URL real del Substack (subdominio, sin ".substack.com")
+  var SUBSTACK_URL = 'alexmilano';
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   var dict = {
@@ -384,6 +428,10 @@
       aiTitle: 'Y ahora, con la IA, empezamos otra vez. A ver qué hacemos esta vez.',
       bookTag: '20 años decidiendo en tecnología — y lo que vino después.',
       buyCta: 'comprar en Amazon', otherCountry: '¿otro país?',
+      newsSub: 'Una decisión real de tecnología cada semana. Y lo que pasó después.',
+      newsCta: 'suscribirme', newsPh: 'tu@email.com', newsAria: 'tu email',
+      newsMicro: 'Sin spam. Solo decisiones y sus consecuencias.',
+      newsFallback: '→ o suscríbete directamente en Substack',
       projTitle: 'Side projects',
       contactTitle: '¿Hablamos de tu próxima decisión?',
       nodes: ['Oportunidad', 'Decisión', 'Consecuencia'],
@@ -426,6 +474,10 @@
       aiTitle: "And now, with AI, we start again. Let's see what we do this time.",
       bookTag: '20 years of making the call in tech — and what came after.',
       buyCta: 'buy on Amazon', otherCountry: 'another country?',
+      newsSub: 'One real tech decision every week. And what happened next.',
+      newsCta: 'subscribe', newsPh: 'you@email.com', newsAria: 'your email',
+      newsMicro: 'No spam. Just decisions and their consequences.',
+      newsFallback: '→ or subscribe directly on Substack',
       projTitle: 'Side projects',
       contactTitle: "Let's talk about your next decision.",
       nodes: ['Opportunity', 'Decision', 'Consequence'],
@@ -495,6 +547,17 @@
     document.querySelectorAll('[data-i18n-bracket]').forEach(function (el) {
       el.textContent = '[' + d[el.getAttribute('data-i18n-bracket')] + ']';
     });
+    document.querySelectorAll('[data-i18n-ph]').forEach(function (el) {
+      el.setAttribute('placeholder', d[el.getAttribute('data-i18n-ph')]);
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+      el.setAttribute('aria-label', d[el.getAttribute('data-i18n-aria')]);
+    });
+    var newsLink = document.getElementById('news-link');
+    if (newsLink) {
+      newsLink.textContent = d.newsFallback;
+      newsLink.href = 'https://' + SUBSTACK_URL + '.substack.com';
+    }
     document.getElementById('btn-es').classList.toggle('active', state.lang === 'es');
     document.getElementById('btn-en').classList.toggle('active', state.lang === 'en');
     renderNodes();
@@ -681,6 +744,24 @@
       marketsEl.style.display = 'none';
     }
   }
+
+  /* ---------- newsletter ---------- */
+
+  (function () {
+    var form = document.getElementById('news-form');
+    if (!form) return;
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var input = document.getElementById('news-email');
+      var email = (input.value || '').trim();
+      if (!email || email.indexOf('@') < 1) {
+        input.focus();
+        return;
+      }
+      window.open('https://' + SUBSTACK_URL + '.substack.com/subscribe?email=' + encodeURIComponent(email),
+        '_blank', 'noopener');
+    });
+  })();
 
   /* ---------- reveals ---------- */
 
