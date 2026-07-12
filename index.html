@@ -134,6 +134,15 @@
   .entry .cons [data-line] { color: var(--body2); }
   .entry .cons [data-line] .amber { color: var(--amber); }
 
+  /* WORDMARK WALL */
+  #companies { border-top: 1px solid var(--line); padding: 52px 6vw; }
+  .wall-title { font-family: var(--mono); font-size: 13px; color: var(--amber); margin-bottom: 6px; }
+  .wall-sub { font-family: var(--mono); font-size: 12px; color: var(--dim); margin-bottom: 28px; }
+  .wordmarks { display: flex; flex-wrap: wrap; gap: 14px 34px; max-width: 960px; }
+  .wordmarks span { font-family: var(--mono); font-size: 13.5px; letter-spacing: 0.05em; color: var(--muted);
+    transition: color 0.25s ease; white-space: nowrap; padding: 4px 0; }
+  .wordmarks span:hover { color: var(--amber); }
+
   /* AI (paper) */
   #ia { background: var(--ink); color: var(--bg); }
   #ia .head-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 56px; align-items: center; margin-bottom: 72px; }
@@ -343,6 +352,19 @@
     </div>
   </section>
 
+  <!-- WORDMARK WALL -->
+  <section id="companies">
+    <div data-reveal>
+      <div class="wall-title">$ companies --built-for</div>
+      <div class="wall-sub" data-i18n="wallSub">he construido para / con</div>
+      <div class="wordmarks" aria-label="Mutua Madrileña, Aurgi, Motortown, Autingo, KPMG, Digitel, Smartmatic, 4Geeks Academy, Startup Chile, Wayra, IE Business School">
+        <span>mutua madrileña</span><span>aurgi</span><span>motortown</span><span>autingo</span>
+        <span>kpmg</span><span>digitel</span><span>smartmatic</span><span>4geeks academy</span>
+        <span>startup chile</span><span>wayra</span><span>ie business school</span>
+      </div>
+    </div>
+  </section>
+
   <!-- AHORA: IA -->
   <section id="ia" class="sec-pad">
     <div class="head-grid">
@@ -450,6 +472,7 @@
       fwLoop: 'el ciclo se repite',
       trackTitle: 'Trayectoria',
       decisionLabel: 'decisión', consLabel: 'consecuencia',
+      wallSub: 'he construido para / con',
       aiTitle: 'Y ahora, con la IA, empezamos otra vez. A ver qué hacemos esta vez.',
       bookTag: '20 años decidiendo en tecnología — y lo que vino después.',
       buyCta: 'comprar en Amazon', otherCountry: '¿otro país?',
@@ -505,6 +528,7 @@
       fwLoop: 'the cycle repeats',
       trackTitle: 'Track record',
       decisionLabel: 'decision', consLabel: 'consequence',
+      wallSub: 'built for / with',
       aiTitle: "And now, with AI, we start again. Let's see what we do this time.",
       bookTag: '20 years of making the call in tech — and what came after.',
       buyCta: 'buy on Amazon', otherCountry: 'another country?',
