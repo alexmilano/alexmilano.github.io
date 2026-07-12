@@ -186,6 +186,13 @@
     font-family: var(--mono); font-size: 12.5px; line-height: 2.1; display: flex; flex-wrap: wrap; gap: 2px 18px; }
   .markets a { color: var(--body2); }
   .markets a:hover { color: var(--amber); }
+  .testimonials { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px; margin-top: 32px; max-width: 1100px; }
+  .quote { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 26px 24px; }
+  .quote .stars { color: var(--amber); font-size: 13px; letter-spacing: 3px; margin-bottom: 14px; }
+  .quote p { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 17px; line-height: 1.6;
+    color: var(--body2); margin: 0 0 16px; }
+  .quote .author { font-family: var(--mono); font-size: 12px; color: var(--muted); }
 
   /* NEWSLETTER */
   #newsletter { border-top: 1px solid var(--line); }
@@ -254,6 +261,8 @@
   .cycle i:nth-of-type(3) { animation-delay: 2s; }
   .copyright { font-family: var(--mono); font-size: 12px; color: var(--dim); }
   .copyright .cursor { width: 8px; height: 14px; margin-left: 6px; }
+  .warnline { font-family: var(--mono); font-size: 12px; color: var(--dim); margin-top: 12px; }
+  .warnline .wsign { color: var(--amber); }
 
   /* MOBILE: full-bleed hero portrait behind the headline */
   @media (max-width: 720px) {
@@ -400,6 +409,8 @@
       <div class="formats" id="formats"></div>
       <div class="markets" id="markets" style="display:none"></div>
     </div>
+    <!-- TODO: reemplazar con reviews reales de Amazon -->
+    <div class="testimonials" id="testimonials" data-reveal></div>
   </section>
 
   <!-- NEWSLETTER -->
@@ -450,6 +461,7 @@
         <i></i><span>→</span><i></i><span>→</span><i></i><span>↺</span>
       </div>
       <div class="copyright">© 2026 alexander milano<span class="cursor" aria-hidden="true"></span></div>
+      <div class="warnline"><span class="wsign" aria-hidden="true">⚠</span> <span data-i18n="footWarn"></span></div>
     </div>
   </footer>
 
@@ -480,6 +492,10 @@
       newsCta: 'suscribirme', newsPh: 'tu@email.com', newsAria: 'tu email',
       newsMicro: 'Sin spam. Solo decisiones y sus consecuencias.',
       newsFallback: '→ o suscríbete directamente en Substack',
+      reviews: [
+        { stars: 5, text: 'PLACEHOLDER — «Una lección de honestidad: decisiones reales con sus consecuencias reales, sin adornos.»', author: '— Lector verificado · Amazon' },
+        { stars: 5, text: 'PLACEHOLDER — «Se lee como una retro de 20 años. Cada capítulo es una decisión que yo también tuve que tomar.»', author: '— Lector verificado · Amazon' }
+      ],
       projTitle: 'Side projects',
       routerTitle: '¿A qué vienes?',
       routes: [
@@ -491,6 +507,7 @@
         { cmd: 'kit-de-prensa', desc: 'Bio oficial y fotos en alta resolución.', href: '/press.html' }
       ],
       contactTitle: '¿Hablamos de tu próxima decisión?',
+      footWarn: 'warning: escribe libros sobre sus propios errores',
       nodes: ['Oportunidad', 'Decisión', 'Consecuencia'],
       pillars: [
         { label: 'ai-native operations', body: 'Agentes de IA de voz en producción real, no demos.' },
@@ -536,6 +553,10 @@
       newsCta: 'subscribe', newsPh: 'you@email.com', newsAria: 'your email',
       newsMicro: 'No spam. Just decisions and their consequences.',
       newsFallback: '→ or subscribe directly on Substack',
+      reviews: [
+        { stars: 5, text: 'PLACEHOLDER — "A lesson in honesty: real decisions with their real consequences, no embellishment."', author: '— Verified reader · Amazon' },
+        { stars: 5, text: 'PLACEHOLDER — "Reads like a 20-year retro. Every chapter is a call I had to make too."', author: '— Verified reader · Amazon' }
+      ],
       projTitle: 'Side projects',
       routerTitle: 'What brings you here?',
       routes: [
@@ -547,6 +568,7 @@
         { cmd: 'press-kit', desc: 'Official bio and high-resolution photos.', href: '/press.html' }
       ],
       contactTitle: "Let's talk about your next decision.",
+      footWarn: 'warning: writes books about his own mistakes',
       nodes: ['Opportunity', 'Decision', 'Consequence'],
       pillars: [
         { label: 'ai-native operations', body: 'AI voice agents in real production, not demos.' },
@@ -633,6 +655,7 @@
     renderProjects();
     renderRoutes();
     renderBook();
+    renderReviews();
     setupReveals();
   }
 
@@ -823,6 +846,19 @@
     } else {
       marketsEl.style.display = 'none';
     }
+  }
+
+  function renderReviews() {
+    var el = document.getElementById('testimonials');
+    if (!el) return;
+    el.innerHTML = t().reviews.map(function (rv) {
+      var stars = new Array(rv.stars + 1).join('★');
+      return '<figure class="quote" style="margin:0">' +
+        '<div class="stars" aria-label="' + rv.stars + '/5">' + stars + '</div>' +
+        '<p>' + esc(rv.text) + '</p>' +
+        '<figcaption class="author">' + esc(rv.author) + '</figcaption>' +
+      '</figure>';
+    }).join('');
   }
 
   /* ---------- newsletter ---------- */
