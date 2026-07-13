@@ -234,6 +234,13 @@
   .project h3 { font-family: var(--serif); font-weight: 700; font-size: 26px; margin: 0 0 12px; color: var(--ink); }
   .project p { font-size: 15.5px; line-height: 1.65; color: var(--body2); margin: 0 0 18px; }
   .project .metrics { font-family: var(--mono); font-size: 13px; color: var(--amber); line-height: 1.9; }
+  .project .flags { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-top: 16px; }
+  .project .flags img { width: 21px; height: 15px; border-radius: 2px; display: block; box-shadow: 0 0 0 1px rgba(255,255,255,0.09); }
+  .ve-note { max-width: 640px; margin: 60px 0 0; padding: 22px 26px; border-left: 2px solid var(--amber);
+    background: linear-gradient(to right, rgba(232,163,61,0.07), transparent 90%); border-radius: 0 8px 8px 0;
+    display: flex; gap: 18px; align-items: flex-start; }
+  .ve-note img { width: 30px; height: 22px; border-radius: 3px; margin-top: 5px; flex: 0 0 auto; box-shadow: 0 0 0 1px rgba(255,255,255,0.1); }
+  .ve-note p { margin: 0; font-size: 16.5px; line-height: 1.72; color: var(--body2); font-style: italic; }
 
   /* ROUTER */
   #router { border-top: 1px solid var(--line); }
@@ -441,6 +448,10 @@
       <h2 data-i18n="projTitle">Side projects</h2>
     </div>
     <div class="projects" id="projects"></div>
+    <div class="ve-note" data-reveal>
+      <img id="ve-flag" width="30" height="22" alt="Venezuela">
+      <p data-i18n="veNote"></p>
+    </div>
   </section>
 
   <!-- ROUTER -->
@@ -520,9 +531,11 @@
         { label: 'teams & transformation', body: 'Equipos que adoptan IA como herramienta diaria de ingeniería.' }
       ],
       projects: [
-        { name: 'GuiaPana', desc: 'Plataforma de descubrimiento de restaurantes venezolanos.', metrics: '+11.000 restaurantes · +26.000 páginas · tráfico desde asistentes de IA', url: 'https://guiapana.com', domain: 'guiapana.com' },
-        { name: 'Legaltica', desc: 'Directorio legal de España.', metrics: '+200.000 landing pages programáticas', url: 'https://www.legaltica.com', domain: 'legaltica.com' }
+        { name: 'GuiaPana', desc: 'El directorio de restaurantes más completo de Venezuela. Reseñas de verdad y «El Pana», un asistente de IA que sabe dónde está la mejor arepa. Para que ningún pana coma mal.', metrics: '+11.000 restaurantes · +26.000 páginas · tráfico desde asistentes de IA', url: 'https://guiapana.com', domain: 'guiapana.com', flags: ['ve'] },
+        { name: 'Legaltica', desc: 'Encuentra abogado en 60 segundos, sin llamar a tu primo «el que estudió Derecho». +5.000 abogados verificados y una IA que lee tu caso y te empareja con el indicado.', metrics: '+200.000 landing pages programáticas · 7 países', url: 'https://www.legaltica.com', domain: 'legaltica.com', flags: ['ar', 'cl', 'co', 'ec', 'es', 'pe', 've'] },
+        { name: "Daruma's Kitchen", desc: 'Escuela de cocina: cursos y experiencias en vivo para cocinar de verdad, de la mano de chefs. Del «no sé freír un huevo» al «esto lo hice yo».', metrics: 'cursos online + experiencias en Caracas', url: 'https://darumas.com', domain: 'darumas.com', flags: ['ve'] }
       ],
+      veNote: 'Hace más de una década que no vivo en Venezuela. Pero desde la lejanía la sigo queriendo. Ojalá algún día se recupere — y si se recupera, quiero poner mi grano de arena en su reconstrucción digital: sobre todo en los datos que hoy no existen.',
       entries: [
         { years: '2020 → hoy', role: 'CTO', company: 'Aurgi / MutuaMad Motor Network', org: 'Grupo Mutua Madrileña',
           decision: 'Transformar Autingo en el núcleo digital de Aurgi y Motortown, llevar el negocio al entorno online y convertir la tecnología en el motor de crecimiento del grupo.',
@@ -582,9 +595,11 @@
         { label: 'teams & transformation', body: 'Teams that adopt AI as a daily engineering tool.' }
       ],
       projects: [
-        { name: 'GuiaPana', desc: 'Discovery platform for Venezuelan restaurants.', metrics: '+11,000 restaurants · +26,000 pages · traffic from AI assistants', url: 'https://guiapana.com', domain: 'guiapana.com' },
-        { name: 'Legaltica', desc: 'Legal directory for Spain.', metrics: '+200,000 programmatic landing pages', url: 'https://www.legaltica.com', domain: 'legaltica.com' }
+        { name: 'GuiaPana', desc: 'The most complete restaurant directory in Venezuela. Real reviews and «El Pana», an AI assistant that knows where the best arepa is. So no pana ever eats badly.', metrics: '+11,000 restaurants · +26,000 pages · traffic from AI assistants', url: 'https://guiapana.com', domain: 'guiapana.com', flags: ['ve'] },
+        { name: 'Legaltica', desc: 'Find a lawyer in 60 seconds — without calling your cousin «who studied law». +5,000 verified lawyers and an AI that reads your case and matches you with the right one.', metrics: '+200,000 programmatic landing pages · 7 countries', url: 'https://www.legaltica.com', domain: 'legaltica.com', flags: ['ar', 'cl', 'co', 'ec', 'es', 'pe', 've'] },
+        { name: "Daruma's Kitchen", desc: 'A cooking school: live courses and hands-on experiences to actually learn to cook, taught by chefs. From "I can\'t fry an egg" to "I made this".', metrics: 'online courses + in-person experiences in Caracas', url: 'https://darumas.com', domain: 'darumas.com', flags: ['ve'] }
       ],
+      veNote: "I haven't lived in Venezuela in over a decade. But from afar, I still love it. I hope one day it heals — and if it does, I want to add my grain of sand to its digital rebuilding: above all, the data that today doesn't exist.",
       entries: [
         { years: '2020 → today', role: 'CTO', company: 'Aurgi / MutuaMad Motor Network', org: 'Mutua Madrileña Group',
           decision: 'Turn Autingo into the digital core of Aurgi and Motortown, take the business online and make technology the growth engine of the group.',
@@ -767,15 +782,37 @@
     }).join('');
   }
 
+  var flagNames = { ar: 'Argentina', cl: 'Chile', co: 'Colombia', ec: 'Ecuador', es: 'España', pe: 'Perú', ve: 'Venezuela' };
+  var FLAGS = {
+    ar: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAyCAMAAAD886zOAAAATlBMVEX////r0av9/PzpzKHs1bby5tnoyJR0rN+jyOqiyOrt28XkwYnNiRfalhblnwnfuYXjuXPdsGbWpmTQlkD59fXbql7r18DXoErvrAz2tA6P72NOAAAAvElEQVRIx+2Viw3DIAwFMTZuy5+QQNh/0TbtCpaiSr4BTn56NpiHMEaFKlShCv9U+BLG3IJ1w/vhrJRvJwAERtqF5mPgUlsAYBGjBajt6P1olUgitWMsPaYUZ0V2AkLisMVzrTNugUliwlFKyh/SVshJrAyVmVbOK/UyRCKPK3LOV2QkmVK2eZXSG4mUYoDqcfT5WRsvsjZmD4ih1cCDhY7PEjIhgNTpfZv2zrt7XibzFEZ/PRWqUIUq/PEGSu1SsRKhYjsAAAAASUVORK5CYII=',
+    cl: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAA1BAMAAAAkBnF3AAAALVBMVEUAMqD////aKRzsk41Wd8BtLV3V3e+dsNs8YrcZRqnEz+n19/zu8flvi8mYT21aZe5QAAAAcklEQVRIx2NgQAaOgjgBw0hWyE6swh5iFRY2EKnwYAExCnnTlgnuWraCCBO9gQyxCUQo5FwoKHiBKDc2CsoQ55lCacEGohTudigsIEYhSyYDSwIxCjmAeOZoCqdIYSgyeGyMEzAoEQlGFY4qHFU4ghUCAOlD1cGIdtceAAAAAElFTkSuQmCC',
+    co: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAA1BAMAAAAkBnF3AAAAD1BMVEUAMIfIEC7/zQB/fkQyKHC6sEclAAAAKUlEQVRIx2NQIhIwjCocVTiqcAQrNCYSMIyCkQNciAQMgkSCUYUjRyEA3Ey/QYscrhkAAAAASUVORK5CYII=',
+    ec: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAA1CAMAAADh9px2AAABU1BMVEX/3QD11QkDSZrZwxWBllABTKD62QUDTqLtHCQ8QYPt0AXFuyEcXaQ0aqL92wBsu0FkShpILhlZQBHfyRWjciDuxgJshYNSOREuZHQOcZyboIjLHyx7kZGSmIbr0yiRfDKqlUpphlehhEDkqwZmpYWSuBfbHigijDrGrjnNxXO2kximiQp9k063sit0VjVVRUytJEBGcHVgdG0JUJfWmBVdvc8lgZm2xMakxRiJ0eZrTxIRVpvYtwJRMmotXYq/oyQ3ncC0jkhAJxWiYl6zq1VtZVUdQosAdq/cygGdYxWysnbP5OvkGSFipTZ8h3qcq5p9YA5eeJvVwkP4+PiAdWGwjCinm2ageRZ5u2tujqTb0ge/LjiOqhtRk29ynG91o6rKRRxWo6x5MFucj3WWJUXVu5+HRCB3L1nEtaqEYzycYxlIl5FtkSpygXRzqj1lmkGCzeRljGZ9AAACDUlEQVRYw+2SV5PaMBRGJRvLwYbFFDcwzXQwnRCW3nvZ3nt65/8/xewPACbKU8bnSXdG98z9rgSAgYGBwd9wEPe/D8Q3h74/FUe4OhTI2O12hxuetC4yYtfO+et4vmS1WuU48ZP68UzkRNHBOY7i2JmZlIP7+mXQdXCpOgMOMHVwI6inRD33Jb/R+zCFvg4ECPBd+xG5KfkAxIsLQBLeVG4cmU6HBJAdwyTACp3wgfNKpBK5CITDgT4TuRufA18CJ3CiFar8ups+t8Ph9nP/RywSaiVwtoicpbFt0XMrCssKS28mtmBKTqzPTZaYyG/v4/rwrc7jMhaDJRLrVdgQkoKr2ez0dHa4XntjEgqxWEKeh8STV1He6ayu3U8E4vkdLaataJAhom6hkBcURRC8Hgox2vYOQG+Fgk4iurJdha9sOm4PgZzU9o6dQpLyuG335fb3+4VNn/CAxBUiKtd7KI/Kslx+6OUIhCtkUPFlvpQLZ2pT/jl/KeIKaSeQhtFbQR6NZOE2SuQB7g5ZkLYcRz0FVR145uZNiTmhBkDwOvtt4nJNJlkqqFc0nvCYRCdT1bXhUp1CwFrxhNZa05Q2Sf5kNhsaSKa0VqtZ8SakaYuVzoNgY+hkarTVsvM62MNH5zXp87CgNek9jLuE1KuhSHxoEK/Pa6F2Cc170cjl9rtoBm/+MYbQEBrC/0P4B2RFffV09Jy7AAAAAElFTkSuQmCC',
+    es: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAA1CAMAAADh9px2AAAA3lBMVEX6vQCtFRnnkwabMRKZPA30tQH4uwGXKhDuswC+OxmrqKnjqQOuAyOcSQZ6bh+2TQ6bXAjFlwrvrQTSpyHnnQWzpXigIBCqoY5EZHlqbkeKVBK6ZCKHLxKoggWrWl/Sr0qUFBe8jKamiSDTnhKfUzLjsh/OWwo8MHOrcA6sKxiRdAmyXUfSZauEf1KvjHjccwvLhg+1rZixCiCjFB9BWGODIA7Zggeynaf5vwtvf2zJfwarbly2GxyyiwSuREt5G02qMkCjgCmvl4dxRwB7XgClO0cQP5Wpdl68fpO9fp8nzyHlAAABfklEQVRYw+3Wx26DQBAG4MVb6RhMM8Vg494r7o5byvu/UC5RTrktUpSI/7aXTzPSzGqAUHBACZZgCf4PsFJwwF9OtVBtyyxNbm+L4nDLauFIlq2WXFC300BfXBUxmFZJIWBPWTiC03ccRS+maxktIUWUOmjPj5m6iIFsDAbGQDNmANT2JifY6+HKxkAhzXpXyyKzqMUHsijCupKslaEkTdwbO0W8A2nbRFfu92T4no5SlzXsNp9H5jbRk8djPcxHo9xlDYkT3JxfxL6iackwl0apKwh9EXMtyTF+24jrgZZ0L+lH6naCuN/hqlC8HTr6Mgy7q1Us5W5NlPgqBDhWpnVKw+7q1TFUVFs8+caGiOcJqUMIl90LRQiyRnyscYmduU3qEEIEVUNTEWtIAeYemy9QrSNkco+N3Gwyg0KIMlWAKsKnJuemjH2/aYYUoskTITizfM3nA33PGwM5yMa73SGrgKrnedyfLAEAYGYy/P36zRR+OZTnXAmWYAn+lE9C+ywNWkwjFAAAAABJRU5ErkJggg==',
+    pe: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAA1AgMAAACrRoTXAAAACVBMVEXZECP////lX2yfghiaAAAAHUlEQVQ4y2NgAAPOUDBIYEAGo4KjgqOCo4JkCQIAnWh/VAqihp0AAAAASUVORK5CYII=',
+    ve: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAA1BAMAAAAkBnF3AAAAMFBMVEUAJH3/zADPFCubGD+/oh8LLYP+/v9JYqLV2+mTosh1iblbcqu0vtk1UpgnRpD29/vas3B/AAAAtElEQVRIx2MQJBIwjCocVTiYFLoQCRgoAAEMDKxEKVz9NG4XYVWsDJzfDvDkTwCZixdwrGJoW8CVwbCqgYDCa+kMEwrYORmu5RJQuOIP2E7W8114lZVOYL8AYfEWcIbjUVj2D8F+n45H4bGfCPb8HDwK+SYg2JwPcKsLRw49VoZSXOq4T2xF5kb3bMChkD0NRYY7rQCHQt6OCygORuWixHMAHi7RwJhIwKBEJBhVOKpwMCkEAL6YvgpZrW8oAAAAAElFTkSuQmCC'
+  };
+
+  function flagsHtml(codes) {
+    if (!codes || !codes.length) return '';
+    return '<div class="flags">' + codes.map(function (c) {
+      var n = flagNames[c] || c;
+      return '<img src="' + FLAGS[c] + '" width="21" height="15" alt="' + n + '" title="' + n + '">';
+    }).join('') + '</div>';
+  }
+
   function renderProjects() {
     document.getElementById('projects').innerHTML = t().projects.map(function (pr) {
       return '<a class="project" data-reveal href="' + pr.url + '" target="_blank" rel="noopener">' +
         '<h3>' + esc(pr.name) + '</h3>' +
         '<p>' + esc(pr.desc) + '</p>' +
         '<div class="metrics">' + esc(pr.metrics) + '</div>' +
+        flagsHtml(pr.flags) +
         '<div class="plink">→ ' + esc(pr.domain) + '</div>' +
       '</a>';
     }).join('');
+    var veFlag = document.getElementById('ve-flag');
+    if (veFlag && !veFlag.src) veFlag.src = FLAGS.ve;
   }
 
   /* ---------- book ---------- */
