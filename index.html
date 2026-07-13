@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Alexander Milano — CTO · AI &amp; Digital Transformation · Author of CONSEQUENCES</title>
-<meta name="description" content="Alexander Milano — CTO, líder en IA y transformación digital, autor de CONSEQUENCES. 20 años tomando decisiones tecnológicas de alto impacto. / CTO, AI leader and author of CONSEQUENCES.">
-<meta property="og:title" content="Alexander Milano — I make hard decisions. And I own the consequences.">
+<title>Alexander Milano, CTO · AI &amp; Digital Transformation · Author of CONSEQUENCES</title>
+<meta name="description" content="Alexander Milano, CTO, líder en IA y transformación digital, autor de CONSEQUENCES. 20 años tomando decisiones tecnológicas de alto impacto. / CTO, AI leader and author of CONSEQUENCES.">
+<meta property="og:title" content="Alexander Milano, I make hard decisions. And I own the consequences.">
 <meta property="og:description" content="CTO @ MutuaMad Motor Network · AI &amp; Digital Transformation · Author of CONSEQUENCES · Madrid">
 <meta property="og:url" content="https://alexmilano.com/">
 <meta property="og:type" content="website">
@@ -189,38 +189,14 @@
     font-family: var(--mono); font-size: 12.5px; line-height: 2.1; display: flex; flex-wrap: wrap; gap: 2px 18px; }
   .markets a { color: var(--body2); }
   .markets a:hover { color: var(--amber); }
-  .testimonials { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px; margin-top: 32px; max-width: 1100px; }
-  .quote { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 26px 24px; }
+  .reviews-head { grid-column: 1 / -1; margin-top: 44px; }
+  .testimonials { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 20px; margin-top: 14px; }
+  .quote { flex: 1 1 320px; max-width: 720px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 26px 26px 22px; }
   .quote .stars { color: var(--amber); font-size: 13px; letter-spacing: 3px; margin-bottom: 14px; }
-  .quote p { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 17px; line-height: 1.6;
-    color: var(--body2); margin: 0 0 16px; }
+  .quote .qtitle { font-family: var(--serif); font-weight: 700; font-size: 18px; line-height: 1.35; color: var(--ink); margin: 0 0 12px; }
+  .quote .qbody { font-size: 15px; line-height: 1.72; color: var(--body2); margin: 0 0 18px; }
   .quote .author { font-family: var(--mono); font-size: 12px; color: var(--muted); }
-
-  /* NEWSLETTER */
-  #newsletter { border-top: 1px solid var(--line); }
-  #newsletter .news-box { max-width: 640px; }
-  .news-sub { font-size: 18px; line-height: 1.7; color: var(--body2); margin: 18px 0 34px; max-width: 46ch; }
-  .news-form { display: flex; align-items: center; gap: 10px; background: var(--panel); border: 1px solid var(--line);
-    border-radius: 6px; padding: 6px 6px 6px 16px; font-family: var(--mono); max-width: 560px; box-shadow: 0 0 40px rgba(232,163,61,0.06); }
-  .news-form:focus-within { border-color: var(--border2); }
-  .news-form .prompt { color: var(--amber); font-size: 15px; flex: 0 0 auto; }
-  .news-form input { flex: 1 1 auto; min-width: 0; background: none; border: none; outline: none;
-    color: var(--ink); font-family: var(--mono); font-size: 14px; padding: 12px 0; }
-  .news-form input::placeholder { color: var(--dim); }
-  .news-form button { flex: 0 0 auto; background: var(--amber); color: var(--bg); border: none; border-radius: 4px;
-    padding: 12px 16px; font-size: 13.5px; font-weight: 500; }
-  .news-form button:hover { background: var(--ink); }
-  .news-micro { font-family: var(--mono); font-size: 12px; color: var(--dim); margin: 14px 0 0; }
-  .news-fallback { font-family: var(--mono); font-size: 12.5px; margin: 8px 0 0; }
-  .news-fallback a { color: var(--muted); }
-  .news-fallback a:hover { color: var(--amber); }
-  @media (max-width: 480px) {
-    .news-form { flex-wrap: wrap; padding: 12px 14px; }
-    .news-form input { flex: 1 1 100%; order: 0; width: 100%; }
-    .news-form .prompt { order: -1; }
-    .news-form button { flex: 1 1 100%; order: 1; padding: 14px 16px; }
-  }
+  .quote .author strong { color: var(--body2); font-weight: 500; }
 
   /* SIDE PROJECTS */
   #proyectos { border-top: 1px solid var(--line); }
@@ -409,7 +385,7 @@
   <section id="libro">
     <div class="book-stage" data-reveal>
       <div class="glow" aria-hidden="true"></div>
-      <img src="uploads/magnific__upload__80890.jpeg" alt="CONSEQUENCES — book cover by Alexander Milano">
+      <img src="uploads/magnific__upload__80890.jpeg" alt="CONSEQUENCES, book cover by Alexander Milano">
     </div>
     <div class="book-copy" data-reveal>
       <div class="kicker">// book</div>
@@ -420,25 +396,10 @@
       <div class="formats" id="formats"></div>
       <div class="markets" id="markets" style="display:none"></div>
     </div>
-    <!-- TODO: reemplazar con reviews reales de Amazon -->
-    <div class="testimonials" id="testimonials" data-reveal></div>
-  </section>
-
-  <!-- NEWSLETTER -->
-  <section id="newsletter" class="sec-pad">
-    <div class="news-box" data-reveal>
-      <div class="kicker">// newsletter</div>
-      <h2>Consecuencias</h2>
-      <p class="news-sub" data-i18n="newsSub"></p>
-      <form class="news-form" id="news-form" novalidate>
-        <span class="prompt" aria-hidden="true">&gt;</span>
-        <input type="email" id="news-email" name="email" required autocomplete="email"
-          data-i18n-ph="newsPh" data-i18n-aria="newsAria" placeholder="tu@email.com" aria-label="email">
-        <button type="submit" data-i18n-bracket="newsCta">[suscribirme]</button>
-      </form>
-      <p class="news-micro" data-i18n="newsMicro"></p>
-      <p class="news-fallback"><a id="news-link" href="#" target="_blank" rel="noopener"></a></p>
+    <div class="reviews-head" data-reveal>
+      <div class="kicker" data-i18n="reviewsKicker">// lo que dicen los lectores</div>
     </div>
+    <div class="testimonials" id="testimonials" data-reveal></div>
   </section>
 
   <!-- SIDE PROJECTS -->
@@ -485,13 +446,11 @@
   'use strict';
 
   var TYPING_SPEED = 32;
-  // TODO: reemplazar con la URL real del Substack (subdominio, sin ".substack.com")
-  var SUBSTACK_URL = 'alexmilano';
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   var dict = {
     es: {
-      metaDesc: 'Alexander Milano — CTO, líder en IA y transformación digital, autor de CONSEQUENCES. 20 años tomando decisiones tecnológicas de alto impacto.',
+      metaDesc: 'Alexander Milano, CTO, líder en IA y transformación digital, autor de CONSEQUENCES. 20 años tomando decisiones tecnológicas de alto impacto.',
       navTrack: 'trayectoria', navAI: 'ia', navBook: 'libro', navContact: 'contacto',
       heroTitle: 'Tomo decisiones difíciles. Y asumo las consecuencias.',
       ctaTrack: 'ver trayectoria', ctaBook: 'el libro',
@@ -502,15 +461,13 @@
       decisionLabel: 'decisión', consLabel: 'consecuencia',
       wallSub: 'he construido para / con',
       aiTitle: 'Y ahora, con la IA, empezamos otra vez. A ver qué hacemos esta vez.',
-      bookTag: '20 años decidiendo en tecnología — y lo que vino después.',
+      bookTag: '20 años decidiendo en tecnología, y lo que vino después.',
       buyCta: 'comprar en Amazon', otherCountry: '¿otro país?',
-      newsSub: 'Una decisión real de tecnología cada semana. Y lo que pasó después.',
-      newsCta: 'suscribirme', newsPh: 'tu@email.com', newsAria: 'tu email',
-      newsMicro: 'Sin spam. Solo decisiones y sus consecuencias.',
-      newsFallback: '→ o suscríbete directamente en Substack',
+      reviewsKicker: '// lo que dicen los lectores',
       reviews: [
-        { stars: 5, text: 'PLACEHOLDER — «Una lección de honestidad: decisiones reales con sus consecuencias reales, sin adornos.»', author: '— Lector verificado · Amazon' },
-        { stars: 5, text: 'PLACEHOLDER — «Se lee como una retro de 20 años. Cada capítulo es una decisión que yo también tuve que tomar.»', author: '— Lector verificado · Amazon' }
+        { stars: 5, title: 'Consequences: que una de ellas sea aprender',
+          text: 'Libro ameno, que contiene historias y anécdotas interesantes, emocionantes… y por momentos, emocional. Buenos consejos que considero útiles, especialmente para perfiles técnicos con responsabilidad y más aún para híbridos técnico-negocio, donde creo que es fácil sentirse identificado en varios pasajes. Me ha entretenido y lo he leído rápido porque me pareció genuinamente interesante. Sensación general tras terminarlo: valió la pena leerlo.',
+          author: 'Gabriel Capote', meta: 'Compra verificada · Amazon España' }
       ],
       projTitle: 'Side projects',
       routerTitle: '¿A qué vienes?',
@@ -535,7 +492,7 @@
         { name: 'Legaltica', desc: 'Encuentra abogado en 60 segundos, sin llamar a tu primo «el que estudió Derecho». +5.000 abogados verificados y una IA que lee tu caso y te empareja con el indicado.', metrics: '+200.000 landing pages programáticas · 7 países', url: 'https://www.legaltica.com', domain: 'legaltica.com', flags: ['ar', 'cl', 'co', 'ec', 'es', 'pe', 've'] },
         { name: "Daruma's Kitchen", desc: 'Escuela de cocina: cursos y experiencias en vivo para cocinar de verdad, de la mano de chefs. Del «no sé freír un huevo» al «esto lo hice yo».', metrics: 'cursos online + experiencias en Caracas', url: 'https://darumas.com', domain: 'darumas.com', flags: ['ve'] }
       ],
-      veNote: 'Hace más de una década que no vivo en Venezuela. Pero desde la lejanía la sigo queriendo. Ojalá algún día se recupere — y si se recupera, quiero poner mi grano de arena en su reconstrucción digital: sobre todo en los datos que hoy no existen.',
+      veNote: 'Hace más de una década que no vivo en Venezuela. Pero desde la lejanía la sigo queriendo. Ojalá algún día se recupere, y si se recupera, quiero poner mi grano de arena en su reconstrucción digital: sobre todo en los datos que hoy no existen.',
       entries: [
         { years: '2020 → hoy', role: 'CTO', company: 'Aurgi / MutuaMad Motor Network', org: 'Grupo Mutua Madrileña',
           decision: 'Transformar Autingo en el núcleo digital de Aurgi y Motortown, llevar el negocio al entorno online y convertir la tecnología en el motor de crecimiento del grupo.',
@@ -548,14 +505,14 @@
           cons: ['infraestructura escalada y marketplace en crecimiento'] },
         { years: '2014 → 2015', role: 'CTO & Founder', company: 'Lifekee', org: 'Miami',
           decision: 'Apostar por blockchain para identidad digital y privacidad cuando casi nadie hablaba de ello.',
-          cons: ['visión adelantada a su tiempo — las ideas que hoy son estándar en gestión de identidad'] },
+          cons: ['visión adelantada a su tiempo, las ideas que hoy son estándar en gestión de identidad'] },
         { years: '2009 → 2014', role: 'CTO & Co-Founder', company: '4Geeks', org: 'Venezuela',
           decision: 'Fundar una startup con dos amigos en un apartamento.',
           cons: ['0 → 50 desarrolladores en 2 años', '+60 productos digitales', 'clientes como KPMG y Smartmatic', 'hoy 4Geeks Academy está entre las 30 academias de tecnología más reconocidas del mundo'] }
       ]
     },
     en: {
-      metaDesc: 'Alexander Milano — CTO, AI and digital transformation leader, author of CONSEQUENCES. 20 years of high-impact technology decisions.',
+      metaDesc: 'Alexander Milano, CTO, AI and digital transformation leader, author of CONSEQUENCES. 20 years of high-impact technology decisions.',
       navTrack: 'track record', navAI: 'ai', navBook: 'book', navContact: 'contact',
       heroTitle: 'I make hard decisions. And I own the consequences.',
       ctaTrack: 'see track record', ctaBook: 'the book',
@@ -566,15 +523,13 @@
       decisionLabel: 'decision', consLabel: 'consequence',
       wallSub: 'built for / with',
       aiTitle: "And now, with AI, we start again. Let's see what we do this time.",
-      bookTag: '20 years of making the call in tech — and what came after.',
+      bookTag: '20 years of making the call in tech, and what came after.',
       buyCta: 'buy on Amazon', otherCountry: 'another country?',
-      newsSub: 'One real tech decision every week. And what happened next.',
-      newsCta: 'subscribe', newsPh: 'you@email.com', newsAria: 'your email',
-      newsMicro: 'No spam. Just decisions and their consequences.',
-      newsFallback: '→ or subscribe directly on Substack',
+      reviewsKicker: '// what readers say',
       reviews: [
-        { stars: 5, text: 'PLACEHOLDER — "A lesson in honesty: real decisions with their real consequences, no embellishment."', author: '— Verified reader · Amazon' },
-        { stars: 5, text: 'PLACEHOLDER — "Reads like a 20-year retro. Every chapter is a call I had to make too."', author: '— Verified reader · Amazon' }
+        { stars: 5, title: 'Consequences: may one of them be to learn',
+          text: 'An easy, engaging read, full of interesting, moving, at times genuinely emotional, stories and anecdotes. Genuinely useful advice, especially for technical profiles with responsibility, and even more for tech-business hybrids, where it\'s easy to see yourself in many of the passages. It kept me entertained and I read it fast because I found it genuinely interesting. Overall feeling after finishing it: it was well worth the read.',
+          author: 'Gabriel Capote', meta: 'Verified purchase · Amazon Spain · translated' }
       ],
       projTitle: 'Side projects',
       routerTitle: 'What brings you here?',
@@ -596,10 +551,10 @@
       ],
       projects: [
         { name: 'GuiaPana', desc: 'The most complete restaurant directory in Venezuela. Real reviews and «El Pana», an AI assistant that knows where the best arepa is. So no pana ever eats badly.', metrics: '+11,000 restaurants · +26,000 pages · traffic from AI assistants', url: 'https://guiapana.com', domain: 'guiapana.com', flags: ['ve'] },
-        { name: 'Legaltica', desc: 'Find a lawyer in 60 seconds — without calling your cousin «who studied law». +5,000 verified lawyers and an AI that reads your case and matches you with the right one.', metrics: '+200,000 programmatic landing pages · 7 countries', url: 'https://www.legaltica.com', domain: 'legaltica.com', flags: ['ar', 'cl', 'co', 'ec', 'es', 'pe', 've'] },
+        { name: 'Legaltica', desc: 'Find a lawyer in 60 seconds, without calling your cousin «who studied law». +5,000 verified lawyers and an AI that reads your case and matches you with the right one.', metrics: '+200,000 programmatic landing pages · 7 countries', url: 'https://www.legaltica.com', domain: 'legaltica.com', flags: ['ar', 'cl', 'co', 'ec', 'es', 'pe', 've'] },
         { name: "Daruma's Kitchen", desc: 'A cooking school: live courses and hands-on experiences to actually learn to cook, taught by chefs. From "I can\'t fry an egg" to "I made this".', metrics: 'online courses + in-person experiences in Caracas', url: 'https://darumas.com', domain: 'darumas.com', flags: ['ve'] }
       ],
-      veNote: "I haven't lived in Venezuela in over a decade. But from afar, I still love it. I hope one day it heals — and if it does, I want to add my grain of sand to its digital rebuilding: above all, the data that today doesn't exist.",
+      veNote: "I haven't lived in Venezuela in over a decade. But from afar, I still love it. I hope one day it heals, and if it does, I want to add my grain of sand to its digital rebuilding: above all, the data that today doesn't exist.",
       entries: [
         { years: '2020 → today', role: 'CTO', company: 'Aurgi / MutuaMad Motor Network', org: 'Mutua Madrileña Group',
           decision: 'Turn Autingo into the digital core of Aurgi and Motortown, take the business online and make technology the growth engine of the group.',
@@ -612,7 +567,7 @@
           cons: ['scaled infrastructure and a growing marketplace'] },
         { years: '2014 → 2015', role: 'CTO & Founder', company: 'Lifekee', org: 'Miami',
           decision: 'Bet on blockchain for digital identity and privacy when almost nobody was talking about it.',
-          cons: ['a vision ahead of its time — ideas that are now standard in identity management'] },
+          cons: ['a vision ahead of its time, ideas that are now standard in identity management'] },
         { years: '2009 → 2014', role: 'CTO & Co-Founder', company: '4Geeks', org: 'Venezuela',
           decision: 'Found a startup with two friends in an apartment.',
           cons: ['0 → 50 developers in 2 years', '+60 digital products', 'clients like KPMG and Smartmatic', 'today 4Geeks Academy ranks among the 30 most recognized tech academies in the world'] }
@@ -665,11 +620,6 @@
     document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
       el.setAttribute('aria-label', d[el.getAttribute('data-i18n-aria')]);
     });
-    var newsLink = document.getElementById('news-link');
-    if (newsLink) {
-      newsLink.textContent = d.newsFallback;
-      newsLink.href = 'https://' + SUBSTACK_URL + '.substack.com';
-    }
     document.getElementById('btn-es').classList.toggle('active', state.lang === 'es');
     document.getElementById('btn-en').classList.toggle('active', state.lang === 'en');
     renderNodes();
@@ -854,7 +804,7 @@
 
     var note = document.getElementById('book-note');
     if (state.lang === 'en') {
-      note.textContent = '// heads up: written in Spanish (for now). english_version: compiling… — I make hard decisions, remember?';
+      note.textContent = '// heads up: written in Spanish (for now). english_version: compiling… I make hard decisions, remember?';
       note.style.display = 'block';
     } else {
       note.style.display = 'none';
@@ -900,29 +850,13 @@
       var stars = new Array(rv.stars + 1).join('★');
       return '<figure class="quote" style="margin:0">' +
         '<div class="stars" aria-label="' + rv.stars + '/5">' + stars + '</div>' +
-        '<p>' + esc(rv.text) + '</p>' +
-        '<figcaption class="author">' + esc(rv.author) + '</figcaption>' +
+        (rv.title ? '<div class="qtitle">' + esc(rv.title) + '</div>' : '') +
+        '<p class="qbody">' + esc(rv.text) + '</p>' +
+        '<figcaption class="author"><strong>' + esc(rv.author) + '</strong>' +
+          (rv.meta ? ' · ' + esc(rv.meta) : '') + '</figcaption>' +
       '</figure>';
     }).join('');
   }
-
-  /* ---------- newsletter ---------- */
-
-  (function () {
-    var form = document.getElementById('news-form');
-    if (!form) return;
-    form.addEventListener('submit', function (ev) {
-      ev.preventDefault();
-      var input = document.getElementById('news-email');
-      var email = (input.value || '').trim();
-      if (!email || email.indexOf('@') < 1) {
-        input.focus();
-        return;
-      }
-      window.open('https://' + SUBSTACK_URL + '.substack.com/subscribe?email=' + encodeURIComponent(email),
-        '_blank', 'noopener');
-    });
-  })();
 
   /* ---------- reveals ---------- */
 
